@@ -19,6 +19,12 @@ client/build
 client/.DS_Store
 client/*.pem
 
+# env
+client/.env
+client/.env.development
+client/.env.production
+client/.env.test
+
 # debug
 client/npm-debug.log*
 client/yarn-debug.log*
@@ -40,6 +46,12 @@ client/next-env.d.ts
 server/dist
 server/static
 server/node_modules
+
+# env
+server/.env
+server/.env.development
+server/.env.production
+server/.env.test
 
 # Logs
 server/logs
