@@ -1,9 +1,9 @@
-import { User } from "src/models/user/entities/user.entity";
+import { JwtUser } from "src/modules/auth/interfaces/JwtUser";
 
 declare global {
   namespace Express {
     interface Request {
-      user?: User;
+      user?: JwtUser;
     }
   }
 }
