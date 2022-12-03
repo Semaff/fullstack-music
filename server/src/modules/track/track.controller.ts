@@ -8,6 +8,7 @@ import { ServeFile } from "src/common/decorators/serve-file.decorator";
 import { AuthGuard } from "../auth/guards/auth.guard";
 import { TrackGuard } from "./guards/track.guard";
 import { NameGuard } from "./guards/name.guard";
+import { ProfileGuard } from "../profile/guards/profile.guard";
 
 @Controller("track")
 export class TrackController {
@@ -18,7 +19,7 @@ export class TrackController {
     =========
   */
   @Post()
-  @UseGuards(AuthGuard)
+  @UseGuards(AuthGuard, ProfileGuard)
   @ServeFile("track")
   create(
     @Req()
@@ -58,7 +59,7 @@ export class TrackController {
     ========
   */
   @Patch(":id")
-  @UseGuards(AuthGuard, TrackGuard, NameGuard)
+  @UseGuards(AuthGuard, ProfileGuard, TrackGuard, NameGuard)
   update(
     @Param("id")
     id: string,
@@ -74,7 +75,7 @@ export class TrackController {
     =========
   */
   @Delete(":id")
-  @UseGuards(AuthGuard, TrackGuard)
+  @UseGuards(AuthGuard, ProfileGuard, TrackGuard)
   delete(@Param("id") id: string) {
     return this.trackService.delete(+id);
   }
