@@ -8,9 +8,6 @@ export interface SignUpBody {
 }
 
 export const signup = async (body: SignUpBody) => {
-  const response = await request.post<string>(
-    `${process.env.NEXT_PUBLIC_SERVER_URL}/user/signup`,
-    body
-  );
+  const response = await request.post<string>(`/user/signup`, body);
   return response.data;
 };

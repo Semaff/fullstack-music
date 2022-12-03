@@ -6,9 +6,6 @@ export interface SignInBody {
 }
 
 export const signin = async (body: SignInBody) => {
-  const response = await request.post<string>(
-    `${process.env.NEXT_PUBLIC_SERVER_URL}/user/signin`,
-    body
-  );
+  const response = await request.post<string>(`/user/signin`, body);
   return response.data;
 };
