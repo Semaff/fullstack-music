@@ -54,7 +54,7 @@ export class AuthService {
   */
   async findById(id: number) {
     return await this.usersRepository.findOne({
-      where: { id },
+      where: { id: id || -1 },
       relations: {
         profile: true
       }
@@ -67,7 +67,7 @@ export class AuthService {
   */
   async findByEmail(email: string) {
     return await this.usersRepository.findOne({
-      where: { email },
+      where: { email: email || "" },
       relations: {
         profile: true
       }
@@ -80,7 +80,7 @@ export class AuthService {
   */
   async findUserPassword(id: number) {
     const user = await this.usersRepository.findOne({
-      where: { id },
+      where: { id: id || -1 },
       select: {
         password: true
       }
