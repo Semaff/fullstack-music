@@ -29,7 +29,7 @@ const SignInPage = () => {
             }
           }}
         >
-          Don't have an account? Sign Up..
+          Don&apos;t have an account? Sign Up..
         </Typography>
       </Link>
     </Paper>
