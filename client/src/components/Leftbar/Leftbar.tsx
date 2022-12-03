@@ -1,4 +1,4 @@
-import { Paper, Box, Divider } from "@mui/material";
+import { Paper, Box } from "@mui/material";
 import React, { useState } from "react";
 import LeftbarFooter from "./LeftbarFooter";
 import LeftbarHeader from "./LeftbarHeader";
@@ -29,25 +29,21 @@ const Leftbar = () => {
       )}
 
       <Paper
-        elevation={10}
         sx={{
           position: "fixed",
+          backgroundColor: "#fff",
           left: 0,
           top: 0,
           zIndex: "2000",
           display: { lg: "flex", xs: isActive ? "flex" : "none" },
           flexDirection: "column",
           height: "100vh",
-          width: "280px",
-          padding: "10px"
+          width: "240px",
+          padding: "30px 10px"
         }}
       >
         <LeftbarHeader />
-        <Divider sx={{ margin: "10px 0" }} />
-
         <LeftbarList />
-        <Divider sx={{ margin: "10px 0" }} />
-
         <LeftbarFooter />
       </Paper>
     </>

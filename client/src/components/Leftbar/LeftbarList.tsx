@@ -38,7 +38,8 @@ const LeftbarList = ({ onClick }: LeftbarListProps) => {
         display: "flex",
         flexDirection: "column",
         gap: "5px",
-        alignItems: "left"
+        alignItems: "left",
+        padding: "0 20px"
       }}
     >
       {listUserItems.map(({ primary, to, icon }, index) => (

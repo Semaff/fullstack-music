@@ -4,7 +4,7 @@ import Logo from "@components/Logo/Logo";
 
 const LeftbarHeader = () => {
   return (
-    <Box>
+    <Box sx={{ marginBottom: "20px" }}>
       <Logo />
     </Box>
   );

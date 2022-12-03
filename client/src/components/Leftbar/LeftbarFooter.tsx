@@ -1,9 +1,22 @@
-import { Typography, Box } from "@mui/material";
+import { Typography, Box, Button } from "@mui/material";
 import React from "react";
 import Link from "next/link";
 import { ERoutes } from "@typings/routes/ERoutes";
+import { logout } from "@api/user";
+import { useMutation } from "react-query";
+import Router from "next/router";
 
 const LeftbarFooter = () => {
+  const { mutate: logoutMutate } = useMutation(logout, {
+    onSuccess() {
+      Router.push("/signin");
+    }
+  });
+
+  const handleLogout = () => {
+    logoutMutate();
+  };
+
   return (
     <Box
       sx={{
@@ -24,6 +37,9 @@ const LeftbarFooter = () => {
           My Profile
         </Typography>
       </Link>
+      <Button variant="contained" onClick={handleLogout} color="inherit">
+        Logout
+      </Button>
     </Box>
   );
 };
