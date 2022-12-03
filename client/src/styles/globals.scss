@@ -8,5 +8,17 @@
 
 html {
   scroll-behavior: smooth;
+  background-color: #f3f3f3;
 }
 
+main {
+  padding: 0 15px;
+  padding-left: 280px + 15px;
+  width: 100%;
+  max-width: 1370px;
+  margin: 0 auto;
+
+  @media screen and (max-width: 1200px) {
+    padding-left: 15px;
+  }
+}
