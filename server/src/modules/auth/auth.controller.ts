@@ -53,6 +53,17 @@ export class AuthController {
   }
 
   /*
+    Refresh Token
+    =================
+  */
+  @Get("/refresh")
+  @UseGuards(AuthGuard)
+  @UseInterceptors(SetTokenInterceptor)
+  async refreshToken(@Req() request: Request) {
+    return this.authService.generateToken(request.user);
+  }
+
+  /*
     Logout
     =========
   */
@@ -71,6 +82,16 @@ export class AuthController {
   @UseGuards(AuthGuard)
   findById(@Param("id") id: string) {
     return this.authService.findById(+id);
+  }
+
+  /*
+    Find Me
+    =================
+  */
+  @Get("/")
+  @UseGuards(AuthGuard)
+  async findMe(@Req() request: Request) {
+    return this.authService.findById(request.user.id);
   }
 
   /*
