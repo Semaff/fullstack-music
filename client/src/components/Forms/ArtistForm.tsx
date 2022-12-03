@@ -36,7 +36,6 @@ const ArtistForm = ({ user }: ProfileFormProps) => {
   const onSettled = async () => {
     await queryClient.invalidateQueries("findMe");
     const updatedUser = queryClient.getQueryData<IUser>("findMe");
-    console.log(updatedUser);
     resetForm(updatedUser);
   };
 
@@ -82,7 +81,7 @@ const ArtistForm = ({ user }: ProfileFormProps) => {
         variant="filled"
         label="Nickname"
         error={nickname.length > 0 && !isNicknameCorrect}
-        helperText={nickname.length > 0 && !isNicknameCorrect ? "Invalid password" : ""}
+        helperText={nickname.length > 0 && !isNicknameCorrect ? "Invalid nickname" : ""}
         value={nickname}
         onChange={(e) => setNickname(e.target.value)}
       />
