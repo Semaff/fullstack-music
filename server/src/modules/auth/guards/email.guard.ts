@@ -14,13 +14,14 @@ export class EmailGuard implements CanActivate {
     try {
       const email = req.body.email;
       const user = await this.authService.findByEmail(email);
-      const isEmailOwner = user.id === req.user.id;
+      const isEmailOwner = user?.id === req.user?.id;
       if (!isEmailOwner && user) {
         throw new Error();
       }
 
       return true;
     } catch (err) {
+      console.log(err);
       throw new HttpException("User with that email already exists!", HttpStatus.BAD_REQUEST);
     }
   }
