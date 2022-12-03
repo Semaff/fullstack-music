@@ -1,7 +1,6 @@
 import React, { FormEvent, useState } from "react";
 import Router from "next/router";
 import { signin } from "@api/user";
-import { SignInBody } from "@api/user/signin";
 import { Box, Button, TextField } from "@mui/material";
 import { useMutation } from "react-query";
 import { validateEmail } from "utils/validations/validateEmail";
@@ -14,7 +13,7 @@ const SignInForm = () => {
   const isPasswordCorrect = validatePassword(password);
   const canSubmit = isEmailCorrect && isPasswordCorrect;
 
-  const { mutate: signinMutate } = useMutation((body: SignInBody) => signin(body), {
+  const { mutate: signinMutate } = useMutation(signin, {
     onSuccess() {
       Router.push("/");
     }
@@ -61,7 +60,7 @@ const SignInForm = () => {
         onChange={(e) => setPassword(e.target.value)}
       />
 
-      <Button type="submit" variant="contained">
+      <Button type="submit" variant="contained" disabled={!canSubmit}>
         SignIn
       </Button>
     </Box>

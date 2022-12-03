@@ -6,7 +6,6 @@ import Router from "next/router";
 import { validateName } from "utils/validations/validateName";
 import { validateEmail } from "utils/validations/validateEmail";
 import { validatePassword } from "utils/validations/validatePassword";
-import { SignUpBody } from "@api/user/signup";
 
 const SignUpForm = () => {
   const [firstName, setFirstName] = useState("");
@@ -21,7 +20,7 @@ const SignUpForm = () => {
 
   const canSubmit = isFirstNameCorrect && isLastNameCorrect && isEmailCorrect && isPasswordCorrect;
 
-  const { mutate: signupMutate } = useMutation((body: SignUpBody) => signup(body), {
+  const { mutate: signupMutate } = useMutation(signup, {
     onSuccess() {
       Router.push("/");
     }
