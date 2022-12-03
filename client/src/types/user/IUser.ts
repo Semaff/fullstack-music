@@ -5,10 +5,5 @@ export interface IUser {
   firstName: string;
   lastName: string;
   email: string;
-  isMusician: boolean;
-  group: unknown;
-  profile: IProfile | null;
-  tracks: unknown[];
-  albums: unknown[];
-  playlists: unknown[];
+  profile?: IProfile;
 }
