@@ -6,7 +6,7 @@ export async function middleware(req: NextRequest) {
   const isAuthPage = pathname === "/signup" || pathname === "/signin";
 
   try {
-    const validateResponse = await fetch("http://localhost:5000/user/validate", {
+    const validateResponse = await fetch("http://localhost:5000/user/refresh", {
       credentials: "include",
       headers: {
         cookie: `token=${req.cookies.get("token")}`
@@ -19,11 +19,12 @@ export async function middleware(req: NextRequest) {
     }
 
     if (!isAuthPage && !isAuthentificated) {
-      return NextResponse.redirect(`${req.nextUrl.origin}/signup`);
+      return NextResponse.redirect(`${req.nextUrl.origin}/signin`);
     }
 
     return NextResponse.next();
   } catch (err) {
+    console.log(err);
     return NextResponse.rewrite(`${req.nextUrl.origin}/500`);
   }
 }
