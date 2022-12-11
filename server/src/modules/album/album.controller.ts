@@ -1,6 +1,7 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, Req, UseGuards } from "@nestjs/common";
 import { Request } from "express";
 import { AuthGuard } from "../auth/guards/auth.guard";
+import { ProfileGuard } from "../profile/guards/profile.guard";
 import { Track } from "../track/entities/track.entity";
 import { AlbumService } from "./album.service";
 import { CreateAlbumDto } from "./dto/create-album.dto";
@@ -17,7 +18,7 @@ export class AlbumController {
     ==========
   */
   @Post()
-  @UseGuards(AuthGuard, NameGuard)
+  @UseGuards(AuthGuard, ProfileGuard, NameGuard)
   create(@Body() createAlbumDto: CreateAlbumDto, @Req() request: Request) {
     return this.albumService.create(createAlbumDto, request.user.id);
   }
@@ -40,6 +41,16 @@ export class AlbumController {
   @UseGuards(AuthGuard, AlbumGuard)
   removeTracks(@Param("id") id: string, @Body() tracks: Track[]) {
     return this.albumService.removeTracks(+id, tracks);
+  }
+
+  /*
+    Find My Albums
+    ==========
+  */
+  @Get()
+  @UseGuards(AuthGuard)
+  findMyAlbums(@Req() request: Request) {
+    return this.albumService.findMyAlbums(request.user.id);
   }
 
   /*

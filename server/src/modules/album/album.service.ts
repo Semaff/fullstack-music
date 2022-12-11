@@ -45,8 +45,32 @@ export class AlbumService {
   }
 
   /*
+    Find My Albums
+    =================
+  */
+  async findMyAlbums(userId: number) {
+    return await this.albumRepository.find({
+      where: {
+        user: {
+          id: userId
+        }
+      },
+      relations: {
+        user: {
+          profile: true
+        },
+        tracks: {
+          user: {
+            profile: true
+          }
+        }
+      }
+    });
+  }
+
+  /*
     Find By Id
-    ========
+    ============
   */
   async findById(id: number) {
     return await this.albumRepository.findOne({
@@ -54,7 +78,14 @@ export class AlbumService {
         id: id || -1
       },
       relations: {
-        tracks: true
+        user: {
+          profile: true
+        },
+        tracks: {
+          user: {
+            profile: true
+          }
+        }
       }
     });
   }
@@ -69,7 +100,14 @@ export class AlbumService {
         name: name || ""
       },
       relations: {
-        tracks: true
+        user: {
+          profile: true
+        },
+        tracks: {
+          user: {
+            profile: true
+          }
+        }
       }
     });
   }
