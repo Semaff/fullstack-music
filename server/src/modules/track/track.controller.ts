@@ -1,4 +1,15 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Req, UseGuards } from "@nestjs/common";
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Req,
+  UseGuards,
+  Query
+} from "@nestjs/common";
 import { TrackService } from "./track.service";
 import { CreateTrackDto } from "./dto/create-track.dto";
 import { UpdateTrackDto } from "./dto/update-track.dto";
@@ -48,10 +59,21 @@ export class TrackController {
     Find By User Id
     ============
   */
-  @Get()
+  @Get("my")
   @UseGuards(AuthGuard)
   findByUserId(@Req() request: Request) {
     return this.trackService.findByUserId(+request.user.id);
+  }
+
+  /*
+    Search
+    ============
+  */
+  @Get()
+  @UseGuards(AuthGuard)
+  search(@Query("search") search: string) {
+    console.log(search);
+    return this.trackService.search(search);
   }
 
   /*

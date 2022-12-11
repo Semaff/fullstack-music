@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { Repository } from "typeorm";
+import { ILike, Repository } from "typeorm";
 import { CreateTrackDto } from "./dto/create-track.dto";
 import { UpdateTrackDto } from "./dto/update-track.dto";
 import { Track } from "./entities/track.entity";
@@ -31,7 +31,7 @@ export class TrackService {
 
     return await this.tracksRepository.save({
       ...createTrackDto,
-      file: file.destination + "\\" + file.filename,
+      file: `http://localhost:5000/` + file.filename,
       user: { id: userId }
     });
   }
@@ -42,7 +42,12 @@ export class TrackService {
   */
   async findById(id: number) {
     return await this.tracksRepository.findOne({
-      where: { id: id || -1 }
+      where: { id: id || -1 },
+      relations: {
+        user: {
+          profile: true
+        }
+      }
     });
   }
 
@@ -52,7 +57,12 @@ export class TrackService {
   */
   async findByName(name: string) {
     return await this.tracksRepository.findOne({
-      where: { name: name || "" }
+      where: { name: name || "" },
+      relations: {
+        user: {
+          profile: true
+        }
+      }
     });
   }
 
@@ -62,7 +72,12 @@ export class TrackService {
   */
   async findByUserId(userId: number) {
     return await this.tracksRepository.find({
-      where: { user: { id: userId || -1 } }
+      where: { user: { id: userId || -1 } },
+      relations: {
+        user: {
+          profile: true
+        }
+      }
     });
   }
 
@@ -78,6 +93,23 @@ export class TrackService {
       }
     });
     return track.user;
+  }
+
+  /*
+    Search
+    ===============
+  */
+  async search(search: string) {
+    return await this.tracksRepository.find({
+      where: {
+        name: ILike(search ? `${search}%` : "%")
+      },
+      relations: {
+        user: {
+          profile: true
+        }
+      }
+    });
   }
 
   /*
