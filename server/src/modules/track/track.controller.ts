@@ -72,7 +72,6 @@ export class TrackController {
   @Get()
   @UseGuards(AuthGuard)
   search(@Query("search") search: string) {
-    console.log(search);
     return this.trackService.search(search);
   }
 
