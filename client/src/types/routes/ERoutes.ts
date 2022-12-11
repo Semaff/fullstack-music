@@ -3,5 +3,6 @@ export enum ERoutes {
   SIGNUP = "/signup",
   PROFILE = "/profile",
   GROUP = "/group",
+  UPLOAD = "/upload",
   HOME = "/"
 }
