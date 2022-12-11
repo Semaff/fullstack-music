@@ -3,12 +3,14 @@ import React from "react";
 import Link from "next/link";
 import { ERoutes } from "@typings/routes/ERoutes";
 import { logout } from "@api/user";
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import Router from "next/router";
 
 const LeftbarFooter = () => {
+  const queryClient = useQueryClient();
   const { mutate: logoutMutate } = useMutation(logout, {
     onSuccess() {
+      queryClient.setQueryData("findMe", undefined);
       Router.push("/signin");
     }
   });

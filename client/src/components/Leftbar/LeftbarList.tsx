@@ -1,37 +1,25 @@
-import { List } from "@mui/material";
+import { Divider, List } from "@mui/material";
 import { ERoutes } from "@typings/routes/ERoutes";
 import React from "react";
 import LeftbarListItem from "./LeftbarListItem";
-import QueueMusicIcon from "@mui/icons-material/QueueMusic";
 import MusicNoteIcon from "@mui/icons-material/MusicNote";
-import SpeakerGroupIcon from "@mui/icons-material/SpeakerGroup";
+import UploadIcon from "@mui/icons-material/Upload";
+import { IUser } from "@typings/user/IUser";
 
 const listUserItems = [
   {
     primary: "Music",
     to: ERoutes.HOME,
     icon: <MusicNoteIcon />
-  },
-  {
-    primary: "Playlists",
-    to: ERoutes.HOME,
-    icon: <QueueMusicIcon />
-  }
-];
-
-const listMusicianItems = [
-  {
-    primary: "Group",
-    to: ERoutes.GROUP,
-    icon: <SpeakerGroupIcon />
   }
 ];
 
 interface LeftbarListProps {
   onClick?: (...args: unknown[]) => unknown;
+  user?: IUser;
 }
 
-const LeftbarList = ({ onClick }: LeftbarListProps) => {
+const LeftbarList = ({ onClick, user }: LeftbarListProps) => {
   return (
     <List
       sx={{
@@ -39,16 +27,24 @@ const LeftbarList = ({ onClick }: LeftbarListProps) => {
         flexDirection: "column",
         gap: "5px",
         alignItems: "left",
-        padding: "0 20px"
+        padding: "0 10px"
       }}
     >
       {listUserItems.map(({ primary, to, icon }, index) => (
         <LeftbarListItem key={index} primary={primary} to={to} icon={icon} onClick={onClick} />
       ))}
 
-      {listMusicianItems.map(({ primary, to, icon }, index) => (
-        <LeftbarListItem key={index} primary={primary} to={to} icon={icon} onClick={onClick} />
-      ))}
+      {user?.profile?.nickname && (
+        <>
+          <Divider sx={{ my: "10px" }} />
+          <LeftbarListItem
+            primary={"Upload Music"}
+            to={ERoutes.UPLOAD}
+            icon={<UploadIcon />}
+            onClick={onClick}
+          />
+        </>
+      )}
     </List>
   );
 };

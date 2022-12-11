@@ -1,5 +1,7 @@
+import { findMe } from "@api/user";
 import { Paper, Box } from "@mui/material";
 import React, { useState } from "react";
+import { useQuery } from "react-query";
 import LeftbarFooter from "./LeftbarFooter";
 import LeftbarHeader from "./LeftbarHeader";
 import LeftbarList from "./LeftbarList";
@@ -7,6 +9,9 @@ import LeftbarUpper from "./LeftbarUpper";
 
 const Leftbar = () => {
   const [isActive, setIsActive] = useState(false);
+  const { data: user } = useQuery("findMe", () => findMe(), {
+    refetchOnWindowFocus: false
+  });
 
   return (
     <>
@@ -43,7 +48,7 @@ const Leftbar = () => {
         }}
       >
         <LeftbarHeader />
-        <LeftbarList />
+        <LeftbarList user={user} />
         <LeftbarFooter />
       </Paper>
     </>
