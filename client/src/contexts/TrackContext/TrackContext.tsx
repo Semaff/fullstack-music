@@ -10,12 +10,15 @@ const TrackProvider: FC<PropsWithChildren> = ({ children }) => {
   const [volume, setVolume] = useState(100);
   const [time, setTime] = useState(0);
   const [duration, setDuration] = useState(0);
+  const [currentPlaylist, setCurrentPlaylist] = useState<ITrack[]>([]);
 
   return (
     <TrackContext.Provider
       value={{
         track,
         setTrack,
+        currentPlaylist,
+        setCurrentPlaylist,
         isActive,
         setIsActive,
         volume,

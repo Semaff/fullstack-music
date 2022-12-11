@@ -17,6 +17,7 @@ const Player = () => {
   const {
     track,
     setTrack,
+    currentPlaylist,
     isActive,
     setIsActive,
     volume,
@@ -64,6 +65,15 @@ const Player = () => {
       audio.ontimeupdate = () => {
         setTime(audio?.currentTime || 0);
       };
+      audio.onended = () => {
+        const trackIndex = currentPlaylist.findIndex((el) => el.id === track.id);
+        const nextTrack = currentPlaylist[trackIndex + 1];
+        if (!nextTrack) {
+          setIsActive(false);
+        } else {
+          setTrack(nextTrack);
+        }
+      };
       changeIsPlaying();
     }
   };
@@ -101,9 +111,8 @@ const Player = () => {
   };
 
   if (!track || !user) {
-    resetSettings();
-
     if (audio) {
+      resetSettings();
       audio.pause();
       audio = null;
     }

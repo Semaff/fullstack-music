@@ -67,7 +67,7 @@ const Home = () => {
         {tracks &&
           tracks?.map((el) => (
             <React.Fragment key={el.id}>
-              <Track track={el} />
+              <Track playlist={tracks} track={el} />
             </React.Fragment>
           ))}
       </Box>
