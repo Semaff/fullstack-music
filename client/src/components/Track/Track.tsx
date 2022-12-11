@@ -1,8 +1,7 @@
 import { Paper, Typography, Box, IconButton } from "@mui/material";
 import { ITrack } from "@typings/tracks/ITrack";
 import { useTrackContext } from "contexts/TrackContext/TrackContext";
-import Image from "next/image";
-import React from "react";
+import React, { ReactNode } from "react";
 import { formatName } from "utils/formatName";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import PauseIcon from "@mui/icons-material/Pause";
@@ -13,10 +12,18 @@ import { findMe } from "@api/user";
 
 interface TrackProps {
   track: ITrack;
+  playlist: ITrack[];
+  children?: ReactNode | string;
 }
 
-const Track = ({ track }: TrackProps) => {
-  const { track: activeTrack, isActive, setIsActive, setTrack } = useTrackContext();
+const Track = ({ track, playlist, children }: TrackProps) => {
+  const {
+    track: activeTrack,
+    setCurrentPlaylist,
+    isActive,
+    setIsActive,
+    setTrack
+  } = useTrackContext();
 
   /* Find Me */
   const { data: user } = useQuery("findMe", () => findMe(), {
@@ -28,6 +35,7 @@ const Track = ({ track }: TrackProps) => {
   const { mutate: deleteMutation } = useMutation(deleteTrack, {
     onSettled() {
       queryClient.refetchQueries("tracks");
+      queryClient.refetchQueries("album");
     }
   });
 
@@ -35,12 +43,12 @@ const Track = ({ track }: TrackProps) => {
     if (track.id !== activeTrack?.id) {
       setTrack(track);
     }
+
+    setCurrentPlaylist(playlist);
     setIsActive(true);
   };
 
-  const handlePauseTrack = () => {
-    setIsActive(false);
-  };
+  const handlePauseTrack = () => setIsActive(false);
 
   const handleDeleteTrack = () => {
     if (track.id === activeTrack?.id) {
@@ -83,6 +91,8 @@ const Track = ({ track }: TrackProps) => {
             <DeleteIcon color="error" />
           </IconButton>
         )}
+
+        {children}
       </Box>
     </Paper>
   );
