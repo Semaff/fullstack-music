@@ -1,3 +1,4 @@
+import { Album } from "src/modules/album/entities/album.entity";
 import { User } from "src/modules/auth/entities/user.entity";
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
@@ -14,4 +15,7 @@ export class Track {
 
   @ManyToOne(() => User, (user) => user.tracks, { onDelete: "CASCADE" })
   user: User;
+
+  @ManyToOne(() => Album, (album) => album.tracks, { onDelete: "SET NULL" })
+  album?: Album;
 }
