@@ -1,4 +1,5 @@
 import { Album } from "src/modules/album/entities/album.entity";
+import { Playlist } from "src/modules/playlist/entities/playlist.entity";
 import { Profile } from "src/modules/profile/entities/profile.entity";
 import { Track } from "src/modules/track/entities/track.entity";
 import { Column, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
@@ -28,4 +29,7 @@ export class User {
 
   @OneToMany(() => Album, (album) => album.user)
   albums: Album[];
+
+  @OneToMany(() => Playlist, (playlist) => playlist.user)
+  playlists: Playlist[];
 }
