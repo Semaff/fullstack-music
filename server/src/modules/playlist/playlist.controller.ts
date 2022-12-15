@@ -33,13 +33,23 @@ export class PlaylistController {
   }
 
   /*
-      Remove Tracks
-      ==============
-    */
+    Remove Tracks
+    ================
+  */
   @Patch(":id/remove-tracks")
   @UseGuards(AuthGuard, PlaylistGuard)
   removeTracks(@Param("id") id: string, @Body() tracks: Track[]) {
     return this.playlistService.removeTracks(+id, tracks);
+  }
+
+  /*
+    Find My Playlists
+    ===========
+  */
+  @Get()
+  @UseGuards(AuthGuard)
+  findMyPlaylists(@Req() request: Request) {
+    return this.playlistService.findMyPlaylists(request.user.id);
   }
 
   /*

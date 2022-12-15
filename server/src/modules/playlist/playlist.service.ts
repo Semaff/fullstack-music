@@ -45,13 +45,38 @@ export class PlaylistService {
   }
 
   /*
+    Find My Playlists
+    ===========
+  */
+  async findMyPlaylists(userId: number) {
+    return this.playlistRepository.find({
+      where: { user: { id: userId } },
+      relations: {
+        user: { profile: true },
+        tracks: {
+          user: {
+            profile: true
+          }
+        }
+      }
+    });
+  }
+
+  /*
     Find By Id
     =============
   */
   async findById(id: number) {
     return await this.playlistRepository.findOne({
       where: { id: id || -1 },
-      relations: { tracks: true }
+      relations: {
+        user: { profile: true },
+        tracks: {
+          user: {
+            profile: true
+          }
+        }
+      }
     });
   }
 
@@ -62,7 +87,14 @@ export class PlaylistService {
   async findByName(name: string) {
     return await this.playlistRepository.findOne({
       where: { name: name || "" },
-      relations: { tracks: true }
+      relations: {
+        user: { profile: true },
+        tracks: {
+          user: {
+            profile: true
+          }
+        }
+      }
     });
   }
 
