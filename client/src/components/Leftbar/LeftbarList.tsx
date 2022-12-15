@@ -5,6 +5,7 @@ import LeftbarListItem from "./LeftbarListItem";
 import MusicNoteIcon from "@mui/icons-material/MusicNote";
 import UploadIcon from "@mui/icons-material/Upload";
 import AlbumIcon from "@mui/icons-material/Album";
+import PlaylistIcon from "@mui/icons-material/PlaylistAdd";
 import { IUser } from "@typings/user/IUser";
 
 const userItems = [
@@ -12,6 +13,11 @@ const userItems = [
     primary: "Music",
     to: ERoutes.HOME,
     icon: <MusicNoteIcon />
+  },
+  {
+    primary: "Playlists",
+    to: ERoutes.PLAYLIST,
+    icon: <PlaylistIcon />
   }
 ];
 
