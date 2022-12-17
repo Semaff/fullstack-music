@@ -1,3 +1,5 @@
+import { IComment } from "@typings/comment/IComment";
+
 export interface ITrack {
   id: number;
   name: string;
@@ -9,4 +11,5 @@ export interface ITrack {
       nickname: string;
     };
   };
+  comments: IComment[];
 }
