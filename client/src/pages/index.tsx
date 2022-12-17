@@ -8,6 +8,7 @@ import { searchTracks } from "@api/tracks/searchTracks";
 import { TextField } from "@mui/material";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
+import Router from "next/router";
 
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const token = req.cookies.token;
@@ -66,9 +67,9 @@ const Home = () => {
 
         {tracks &&
           tracks?.map((el) => (
-            <React.Fragment key={el.id}>
+            <Box key={el.id} onClick={() => Router.push("/track" + "/" + el.id)}>
               <Track playlist={tracks} track={el} />
-            </React.Fragment>
+            </Box>
           ))}
       </Box>
     </WithLeftbar>
