@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
-import { Paper, Box, Typography, IconButton } from "@mui/material";
+import { Paper, Box, Typography } from "@mui/material";
 import { useTrackContext } from "contexts/TrackContext/TrackContext";
-import PlayArrowIcon from "@mui/icons-material/PlayArrow";
-import PauseIcon from "@mui/icons-material/Pause";
 import { formatName } from "utils/formatName";
 import { useQuery } from "react-query";
 import { findMe } from "@api/user";
+import PlayerControl from "./PlayerControl";
+import PlayerTimeRange from "./PlayerTimeRange";
+import PlayerVolumeRange from "./PlayerVolumeRange";
 
 let audio: HTMLAudioElement | null = null;
 
@@ -22,36 +23,20 @@ const Player = () => {
     setIsActive,
     volume,
     setVolume,
-    time,
     setTime,
-    duration,
     setDuration
   } = useTrackContext();
-
-  const handlePlayTrack = () => {
-    setIsActive(true);
-    audio?.play();
-  };
-
-  const handlePauseTrack = () => {
-    setIsActive(false);
-    audio?.pause();
-  };
 
   useEffect(() => {
     if (!audio) {
       audio = new Audio();
     }
 
-    if (track) {
-      changeAudio();
-    }
+    changeAudio();
   }, [track]);
 
   useEffect(() => {
-    if (audio && track) {
-      changeIsPlaying();
-    }
+    changeIsPlaying();
   }, [isActive]);
 
   const changeAudio = () => {
@@ -96,20 +81,6 @@ const Player = () => {
     }
   };
 
-  const changeVolume = (volume: number) => {
-    setVolume(volume);
-    if (audio) {
-      audio.volume = volume / 100;
-    }
-  };
-
-  const changeTime = (time: number) => {
-    setTime(time);
-    if (audio) {
-      audio.currentTime = time;
-    }
-  };
-
   if (!track || !user) {
     if (audio) {
       resetSettings();
@@ -141,40 +112,10 @@ const Player = () => {
         <Typography fontSize={20}>{formatName(track?.name || "")}</Typography>
       </Box>
 
-      <Box sx={{ display: "flex", gap: "10px" }}>
-        Volume:
-        <input
-          type="range"
-          value={volume}
-          onChange={(e) => changeVolume(+e.target.value)}
-          min={0}
-          max={100}
-        />
-        {volume}/100
-      </Box>
+      <PlayerVolumeRange audio={audio} />
+      <PlayerTimeRange audio={audio} />
 
-      <Box sx={{ display: "flex", gap: "10px" }}>
-        Time:
-        <input
-          type="range"
-          value={time}
-          onChange={(e) => changeTime(+e.target.value)}
-          min={0}
-          max={duration}
-        />
-        {Math.floor(time)}/{Math.floor(duration)}
-      </Box>
-
-      {track?.id &&
-        (isActive ? (
-          <IconButton onClick={handlePauseTrack}>
-            <PauseIcon fontSize="large" />
-          </IconButton>
-        ) : (
-          <IconButton onClick={handlePlayTrack}>
-            <PlayArrowIcon fontSize="large" />
-          </IconButton>
-        ))}
+      {track.id && <PlayerControl audio={audio} />}
     </Paper>
   );
 };
