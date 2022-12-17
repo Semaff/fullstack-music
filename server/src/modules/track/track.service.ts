@@ -46,6 +46,9 @@ export class TrackService {
       relations: {
         user: {
           profile: true
+        },
+        comments: {
+          user: true
         }
       }
     });

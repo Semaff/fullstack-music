@@ -23,7 +23,7 @@ export class CommentService {
       text,
       user: { id: userId },
       track: { id: trackId },
-      parent: { id: parentId }
+      parent: parentId ? { id: parentId } : null
     });
   }
 
@@ -35,6 +35,7 @@ export class CommentService {
     return await this.commentRepository.findOne({
       where: { id: id || -1 },
       relations: {
+        user: true,
         children: true
       }
     });
@@ -52,6 +53,9 @@ export class CommentService {
 
     return await this.commentRepository.find({
       where: { track: { id: trackId }, parent: IsNull() },
+      relations: {
+        user: true
+      },
       take: limit,
       skip: (page - 1) * limit
     });
