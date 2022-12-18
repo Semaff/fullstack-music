@@ -85,7 +85,7 @@ export class AuthService {
         password: true
       }
     });
-    return user.password;
+    return user?.password;
   }
 
   /*
@@ -94,7 +94,7 @@ export class AuthService {
   */
   async update(id: number, updateDto: UpdateDto) {
     const user = await this.findById(id);
-    return await this.usersRepository.update({ id: user.id }, { ...updateDto });
+    return await this.usersRepository.update({ id: user?.id || -1 }, { ...updateDto });
   }
 
   /*
@@ -119,15 +119,14 @@ export class AuthService {
   */
   async delete(id: number) {
     const user = await this.findById(id);
-    await this.usersRepository.delete({ id: user.id });
-    return user;
+    return await this.usersRepository.delete({ id: user.id });
   }
 
   /*
     Other
     =========
   */
-  generateToken(user: JwtUser) {
+  async generateToken(user: JwtUser) {
     const payload: JwtUser = {
       id: user.id,
       firstName: user.firstName,
@@ -135,6 +134,6 @@ export class AuthService {
       email: user.email
     };
 
-    return this.jwtService.sign(payload);
+    return await this.jwtService.signAsync(payload);
   }
 }
