@@ -118,8 +118,7 @@ export class AuthService {
     =========
   */
   async delete(id: number) {
-    const user = await this.findById(id);
-    return await this.usersRepository.delete({ id: user.id });
+    return await this.usersRepository.delete({ id: id || -1 });
   }
 
   /*

@@ -88,7 +88,7 @@ export class AuthController {
     Find Me
     =================
   */
-  @Get("/")
+  @Get()
   @UseGuards(AuthGuard)
   async findMe(@Req() request: Request) {
     return this.authService.findById(request.user.id);
