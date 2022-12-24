@@ -95,7 +95,7 @@ export class TrackService {
         user: true
       }
     });
-    return track.user;
+    return track?.user;
   }
 
   /*

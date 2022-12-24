@@ -51,13 +51,13 @@ export class TrackController {
   */
   @Get(":id")
   @UseGuards(AuthGuard)
-  findById(@Param("id") id: string) {
+  findById(@Param("id") id: number) {
     return this.trackService.findById(+id);
   }
 
   /*
     Find By User Id
-    ============
+    ===================
   */
   @Get("my")
   @UseGuards(AuthGuard)
@@ -83,7 +83,7 @@ export class TrackController {
   @UseGuards(AuthGuard, ProfileGuard, TrackGuard, NameGuard)
   update(
     @Param("id")
-    id: string,
+    id: number,
 
     @Body()
     updateTrackDto: UpdateTrackDto
@@ -97,7 +97,7 @@ export class TrackController {
   */
   @Delete(":id")
   @UseGuards(AuthGuard, ProfileGuard, TrackGuard)
-  delete(@Param("id") id: string) {
+  delete(@Param("id") id: number) {
     return this.trackService.delete(+id);
   }
 }
