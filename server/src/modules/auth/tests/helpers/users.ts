@@ -1,5 +1,7 @@
+import { ChangePasswordDto } from "../../dto/change-password.dto";
 import { SignInDto } from "../../dto/signin.dto";
 import { SignUpDto } from "../../dto/signup.dto";
+import { UpdateDto } from "../../dto/update.dto";
 import { User } from "../../entities/user.entity";
 
 export const mockedToken = `randomtoken123`;
@@ -15,6 +17,16 @@ export const signUpDto: SignUpDto = {
 export const signInDto: SignInDto = {
   password: "Bob1!",
   email: "bob@example.com"
+};
+
+export const updateDto: UpdateDto = {
+  firstName: "Bobik1!",
+  lastName: "Bobik1!",
+  email: "bobik@example.com"
+};
+
+export const changePasswordDto: ChangePasswordDto = {
+  password: "Bobik1!"
 };
 
 export const users: User[] = [
