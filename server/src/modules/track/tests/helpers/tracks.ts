@@ -1,7 +1,8 @@
-import { User } from "src/modules/auth/entities/user.entity";
 import { CreateTrackDto } from "../../dto/create-track.dto";
 import { UpdateTrackDto } from "../../dto/update-track.dto";
 import { Track } from "../../entities/track.entity";
+import { user } from "./user";
+import * as path from "path";
 
 export const createTrackDto: CreateTrackDto = {
   name: "Track4"
@@ -9,18 +10,6 @@ export const createTrackDto: CreateTrackDto = {
 
 export const updateTrackDto: UpdateTrackDto = {
   name: "Track10"
-};
-
-export const user: User = {
-  id: 1,
-  firstName: "Bob",
-  lastName: "Bob",
-  email: "bob@example.com",
-  password: "Bob1!",
-  albums: [],
-  comments: [],
-  playlists: [],
-  tracks: []
 };
 
 export const tracks: Track[] = [
@@ -31,7 +20,7 @@ export const tracks: Track[] = [
     album: null,
     playlists: null,
     comments: [],
-    user
+    user: user
   },
   {
     id: 2,
@@ -52,3 +41,6 @@ export const tracks: Track[] = [
     user
   }
 ];
+
+export const trackPath = path.resolve(__dirname, "music.mp3");
+export const staticPath = path.resolve(__dirname, "..", "..", "..", "..", "..", "static");
