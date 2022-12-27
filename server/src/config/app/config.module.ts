@@ -11,7 +11,7 @@ const ENV = process.env.NODE_ENV;
   imports: [
     ThrottlerModule.forRoot({
       ttl: 60,
-      limit: 10 // amount of requests in `ttl seconds`
+      limit: 20 // amount of requests in `ttl seconds`
     }),
 
     ConfigModule.forRoot({

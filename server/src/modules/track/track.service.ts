@@ -21,17 +21,22 @@ export class TrackService {
   */
   async create(createTrackDto: CreateTrackDto, file: Express.Multer.File, userId: number) {
     const track = await this.findByName(createTrackDto.name);
-    if (track) {
-      fs.unlinkSync(
-        path.resolve(__dirname, "..", "..", "..", "static", file.destination + "\\" + file.filename)
-      );
+    const staticPath = path.resolve(__dirname, "..", "..", "..", "static");
+    const trackPath = path.resolve(staticPath, file.destination + "\\" + file.filename);
+    if (createTrackDto.name?.length < 3) {
+      fs.unlinkSync(trackPath);
+      throw new HttpException("Name should be 3 length long!", HttpStatus.BAD_REQUEST);
+    }
 
+    if (track) {
+      fs.unlinkSync(trackPath);
       throw new HttpException("Track with that name already exists!", HttpStatus.BAD_REQUEST);
     }
 
+    const fileDestination = `http://localhost:5000/` + file.filename;
     return await this.tracksRepository.save({
       ...createTrackDto,
-      file: `http://localhost:5000/` + file.filename,
+      file: fileDestination,
       user: { id: userId }
     });
   }
@@ -120,6 +125,10 @@ export class TrackService {
     =========
   */
   async update(id: number, updateTrackDto: UpdateTrackDto) {
+    if (updateTrackDto.name?.length < 3) {
+      throw new HttpException("Name should be 3 length long!", HttpStatus.BAD_REQUEST);
+    }
+
     return await this.tracksRepository.update({ id }, { ...updateTrackDto });
   }
 

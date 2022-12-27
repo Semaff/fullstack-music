@@ -1,8 +1,4 @@
-import { IsString, MaxLength, MinLength } from "class-validator";
-
+// We can't use class-validator because multer will create the file before we checking..
 export class CreateTrackDto {
-  @IsString()
-  @MinLength(3)
-  @MaxLength(50)
   name: string;
 }
