@@ -55,6 +55,10 @@ describe("TrackController (e2e)", () => {
     }
   });
 
+  afterAll(async () => {
+    await app.close();
+  });
+
   /*
     Create
     =========

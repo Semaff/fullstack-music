@@ -29,6 +29,10 @@ describe("AuthController (e2e)", () => {
     await authService.delete(user?.id);
   });
 
+  afterAll(async () => {
+    await app.close();
+  });
+
   /*
     Sign Up
     =========
