@@ -38,7 +38,8 @@ export class CommentController {
     =================
   */
   @Get(":id")
-  findById(@Param("id") id: string) {
+  @UseGuards(AuthGuard)
+  findById(@Param("id") id: number) {
     return this.commentService.findById(+id);
   }
 
@@ -47,6 +48,7 @@ export class CommentController {
     =================
   */
   @Get()
+  @UseGuards(AuthGuard)
   findByTrackId(@Query() query: QueryDto) {
     return this.commentService.findByTrack(query);
   }
@@ -57,7 +59,7 @@ export class CommentController {
   */
   @Patch(":id")
   @UseGuards(AuthGuard, CommentGuard)
-  update(@Param("id") id: string, @Body() updateCommentDto: UpdateCommentDto) {
+  update(@Param("id") id: number, @Body() updateCommentDto: UpdateCommentDto) {
     return this.commentService.update(+id, updateCommentDto);
   }
 
@@ -67,7 +69,7 @@ export class CommentController {
   */
   @Delete(":id")
   @UseGuards(AuthGuard, CommentGuard)
-  delete(@Param("id") id: string) {
+  delete(@Param("id") id: number) {
     return this.commentService.delete(+id);
   }
 }
