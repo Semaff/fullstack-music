@@ -31,7 +31,8 @@ export class AlbumService {
   async addTracks(id: number, tracks: Track[]) {
     const album = await this.findById(id);
     album.tracks.push(...tracks);
-    return await this.albumRepository.save(album);
+    await this.albumRepository.save(album);
+    return await this.findById(id);
   }
 
   /*
@@ -41,7 +42,8 @@ export class AlbumService {
   async removeTracks(id: number, tracks: Track[]) {
     const album = await this.findById(id);
     album.tracks = album.tracks.filter((track) => !tracks.find((el) => el.id === track.id));
-    return await this.albumRepository.save(album);
+    await this.albumRepository.save(album);
+    return await this.findById(id);
   }
 
   /*

@@ -29,7 +29,7 @@ export class AlbumController {
   */
   @Patch(":id/add-tracks")
   @UseGuards(AuthGuard, AlbumGuard)
-  addTracks(@Param("id") id: string, @Body() tracks: Track[]) {
+  addTracks(@Param("id") id: number, @Body() tracks: Track[]) {
     return this.albumService.addTracks(+id, tracks);
   }
 
@@ -39,7 +39,7 @@ export class AlbumController {
   */
   @Patch(":id/remove-tracks")
   @UseGuards(AuthGuard, AlbumGuard)
-  removeTracks(@Param("id") id: string, @Body() tracks: Track[]) {
+  removeTracks(@Param("id") id: number, @Body() tracks: Track[]) {
     return this.albumService.removeTracks(+id, tracks);
   }
 
@@ -58,7 +58,8 @@ export class AlbumController {
     ==========
   */
   @Get(":id")
-  findById(@Param("id") id: string) {
+  @UseGuards(AuthGuard)
+  findById(@Param("id") id: number) {
     return this.albumService.findById(+id);
   }
 
@@ -68,7 +69,7 @@ export class AlbumController {
   */
   @Patch(":id")
   @UseGuards(AuthGuard, AlbumGuard, NameGuard)
-  update(@Param("id") id: string, @Body() updateAlbumDto: UpdateAlbumDto) {
+  update(@Param("id") id: number, @Body() updateAlbumDto: UpdateAlbumDto) {
     return this.albumService.update(+id, updateAlbumDto);
   }
 
@@ -78,7 +79,7 @@ export class AlbumController {
   */
   @Delete(":id")
   @UseGuards(AuthGuard, AlbumGuard)
-  delete(@Param("id") id: string) {
+  delete(@Param("id") id: number) {
     return this.albumService.delete(+id);
   }
 }
