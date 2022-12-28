@@ -28,7 +28,7 @@ export class PlaylistController {
   */
   @Patch(":id/add-tracks")
   @UseGuards(AuthGuard, PlaylistGuard)
-  addTracks(@Param("id") id: string, @Body() tracks: Track[]) {
+  addTracks(@Param("id") id: number, @Body() tracks: Track[]) {
     return this.playlistService.addTracks(+id, tracks);
   }
 
@@ -38,7 +38,7 @@ export class PlaylistController {
   */
   @Patch(":id/remove-tracks")
   @UseGuards(AuthGuard, PlaylistGuard)
-  removeTracks(@Param("id") id: string, @Body() tracks: Track[]) {
+  removeTracks(@Param("id") id: number, @Body() tracks: Track[]) {
     return this.playlistService.removeTracks(+id, tracks);
   }
 
@@ -57,7 +57,8 @@ export class PlaylistController {
     ===========
   */
   @Get(":id")
-  findById(@Param("id") id: string) {
+  @UseGuards(AuthGuard)
+  findById(@Param("id") id: number) {
     return this.playlistService.findById(+id);
   }
 
@@ -67,7 +68,7 @@ export class PlaylistController {
   */
   @Patch(":id")
   @UseGuards(AuthGuard, PlaylistGuard, NameGuard)
-  update(@Param("id") id: string, @Body() updatePlaylistDto: UpdatePlaylistDto) {
+  update(@Param("id") id: number, @Body() updatePlaylistDto: UpdatePlaylistDto) {
     return this.playlistService.update(+id, updatePlaylistDto);
   }
 
@@ -77,7 +78,7 @@ export class PlaylistController {
   */
   @Delete(":id")
   @UseGuards(AuthGuard, PlaylistGuard)
-  delete(@Param("id") id: string) {
+  delete(@Param("id") id: number) {
     return this.playlistService.delete(+id);
   }
 }

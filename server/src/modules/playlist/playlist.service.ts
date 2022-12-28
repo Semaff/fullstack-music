@@ -31,7 +31,8 @@ export class PlaylistService {
   async addTracks(id: number, tracks: Track[]) {
     const playlist = await this.findById(id);
     playlist.tracks = [...playlist.tracks, ...tracks];
-    return await this.playlistRepository.save(playlist);
+    await this.playlistRepository.save(playlist);
+    return await this.findById(id);
   }
 
   /*
@@ -41,7 +42,8 @@ export class PlaylistService {
   async removeTracks(id: number, tracks: Track[]) {
     const playlist = await this.findById(id);
     playlist.tracks = playlist.tracks.filter((track) => !tracks.find((el) => el.id === track.id));
-    return await this.playlistRepository.save(playlist);
+    await this.playlistRepository.save(playlist);
+    return await this.findById(id);
   }
 
   /*
