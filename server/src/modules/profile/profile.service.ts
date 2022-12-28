@@ -70,6 +70,6 @@ export class ProfileService {
   */
   async delete(userId: number) {
     const profile = await this.findByUserId(userId);
-    return await this.profilesRepository.delete({ id: profile.id });
+    return await this.profilesRepository.delete({ id: profile?.id || -1 });
   }
 }
