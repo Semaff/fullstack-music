@@ -1,14 +1,14 @@
 import { Paper, Typography, Box, IconButton } from "@mui/material";
 import { ITrack } from "@typings/tracks/ITrack";
-import { useTrackContext } from "contexts/TrackContext/TrackContext";
 import React, { ReactNode } from "react";
-import { formatName } from "utils/formatName";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import PauseIcon from "@mui/icons-material/Pause";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { deleteTrack } from "@api/tracks/deleteTrack";
 import { findMe } from "@api/user";
+import { formatName } from "@utils/formatName";
+import { useTrackContext } from "@contexts/TrackContext/TrackContext";
 
 interface TrackProps {
   track: ITrack;
@@ -86,7 +86,7 @@ const Track = ({ track, playlist, children }: TrackProps) => {
           </IconButton>
         )}
 
-        {track.user.profile.nickname === user?.profile?.nickname && (
+        {track.user.profile?.nickname === user?.profile?.nickname && (
           <IconButton onClick={handleDeleteTrack}>
             <DeleteIcon color="error" />
           </IconButton>

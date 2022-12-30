@@ -1,4 +1,3 @@
-import WithLeftbar from "layouts/WithLeftbar";
 import { GetServerSideProps } from "next";
 import React, { useState } from "react";
 import { dehydrate, QueryClient, useQuery } from "react-query";
@@ -9,6 +8,7 @@ import { TextField } from "@mui/material";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Router from "next/router";
+import WithLeftbar from "@layouts/WithLeftbar";
 
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const token = req.cookies.token;
@@ -58,6 +58,7 @@ const Home = () => {
           }}
         >
           <TextField
+            inputProps={{ "data-testid": "search-field" }}
             value={search}
             onChange={(e) => handleSearchChange(e.target.value)}
             label="Search for tracks"

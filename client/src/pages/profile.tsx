@@ -2,7 +2,7 @@ import { findMe } from "@api/user";
 import ArtistForm from "@components/Forms/ArtistForm";
 import ProfileForm from "@components/Forms/ProfileForm";
 import { Box, Typography, Avatar } from "@mui/material";
-import WithLeftbar from "layouts/WithLeftbar";
+import WithLeftbar from "@layouts/WithLeftbar";
 import { GetServerSideProps } from "next";
 import React from "react";
 import { dehydrate, QueryClient, useQuery } from "react-query";

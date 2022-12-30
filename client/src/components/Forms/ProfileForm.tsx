@@ -3,8 +3,8 @@ import { Box, TextField, Button } from "@mui/material";
 import { IUser } from "@typings/user/IUser";
 import React, { FormEvent, useState } from "react";
 import { useMutation, useQueryClient } from "react-query";
-import { validateEmail } from "utils/validations/validateEmail";
-import { validateName } from "utils/validations/validateName";
+import { validateEmail } from "@utils/validations/validateEmail";
+import { validateName } from "@utils/validations/validateName";
 
 interface ProfileFormProps {
   user: IUser;
@@ -67,6 +67,7 @@ const ProfileForm = ({ user }: ProfileFormProps) => {
 
   return (
     <Box
+      data-testid="profile-form"
       onSubmit={handleSubmit}
       component="form"
       sx={{
