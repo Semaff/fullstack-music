@@ -8,7 +8,7 @@ export const findMe = async (token?: string) => {
     headers.cookie = `token=${token}`;
   }
 
-  const response = await request.get<IUser>(`/user/`, {
+  const response = await request.get<IUser>(`/user`, {
     headers
   });
   return response.data;

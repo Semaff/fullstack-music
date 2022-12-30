@@ -11,5 +11,6 @@ export const searchTracks = async (token: string | undefined, search?: string) =
   const response = await request.get<ITrack[]>(`/track?search=${search}`, {
     headers
   });
+
   return response.data;
 };
