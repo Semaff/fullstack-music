@@ -4,7 +4,7 @@ import Comment from "@components/Comment/Comment";
 import CommentForm from "@components/Forms/CommentForm";
 import Track from "@components/Track/Track";
 import { Box } from "@mui/material";
-import WithLeftbar from "layouts/WithLeftbar";
+import WithLeftbar from "@layouts/WithLeftbar";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import React from "react";

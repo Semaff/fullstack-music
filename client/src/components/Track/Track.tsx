@@ -61,6 +61,7 @@ const Track = ({ track, playlist, children }: TrackProps) => {
 
   return (
     <Paper
+      data-testid="track"
       elevation={2}
       sx={{
         my: "10px",

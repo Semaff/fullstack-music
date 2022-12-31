@@ -2,7 +2,7 @@ import { createPlaylist } from "@api/playlist";
 import { Box, Button, TextField } from "@mui/material";
 import React, { FormEvent, useState } from "react";
 import { useMutation, useQueryClient } from "react-query";
-import { validateName } from "utils/validations/validateName";
+import { validateName } from "@utils/validations/validateName";
 
 const PlaylistForm = () => {
   const [name, setName] = useState("");
@@ -26,6 +26,7 @@ const PlaylistForm = () => {
 
   return (
     <Box
+      data-testid="playlist-form"
       sx={{
         display: "flex",
         flexDirection: "column",

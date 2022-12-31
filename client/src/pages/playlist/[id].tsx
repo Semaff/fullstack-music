@@ -3,7 +3,7 @@ import { findMyTracks } from "@api/tracks";
 import PlaylistTrack from "@components/Track/PlaylistTrack";
 import Track from "@components/Track/Track";
 import { Box, Button, Typography } from "@mui/material";
-import WithLeftbar from "layouts/WithLeftbar";
+import WithLeftbar from "@layouts/WithLeftbar";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
@@ -50,10 +50,12 @@ const PlaylistItemPage = () => {
           }}
         >
           <Typography>{playlist?.name}</Typography>
-          <Typography>Amount of Tracks - {playlist?.tracks?.length}</Typography>
+          <Typography data-testid="playlist-length">
+            Amount of Tracks - {playlist?.tracks?.length}
+          </Typography>
         </Box>
 
-        <Button onClick={handleEditToggle} variant="contained">
+        <Button onClick={handleEditToggle} variant="contained" data-testid="edit-button">
           {!isEdit ? "Add Tracks" : "Done"}
         </Button>
 

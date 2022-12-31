@@ -33,6 +33,7 @@ const CommentForm = ({ track, parentComment }: CommentFormProps) => {
 
   return (
     <Box
+      data-testid="comment-form"
       sx={{
         display: "flex",
         flexDirection: "column",

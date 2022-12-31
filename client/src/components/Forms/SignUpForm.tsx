@@ -3,9 +3,9 @@ import { Box, Button, TextField } from "@mui/material";
 import { useMutation } from "react-query";
 import { signup } from "@api/user";
 import Router from "next/router";
-import { validateName } from "utils/validations/validateName";
-import { validateEmail } from "utils/validations/validateEmail";
-import { validatePassword } from "utils/validations/validatePassword";
+import { validateName } from "@utils/validations/validateName";
+import { validateEmail } from "@utils/validations/validateEmail";
+import { validatePassword } from "@utils/validations/validatePassword";
 
 const SignUpForm = () => {
   const [firstName, setFirstName] = useState("");
@@ -35,6 +35,7 @@ const SignUpForm = () => {
 
   return (
     <Box
+      data-testid="signup-form"
       sx={{
         display: "flex",
         flexDirection: "column",

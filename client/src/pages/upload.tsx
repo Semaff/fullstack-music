@@ -1,5 +1,5 @@
 import TrackForm from "@components/Forms/TrackForm";
-import WithLeftbar from "layouts/WithLeftbar";
+import WithLeftbar from "@layouts/WithLeftbar";
 import React from "react";
 import { Box, Typography } from "@mui/material";
 

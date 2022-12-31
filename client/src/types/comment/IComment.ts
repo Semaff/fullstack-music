@@ -6,6 +6,6 @@ export interface IComment {
   text: string;
   user: IUser;
   track: ITrack;
-  parent: IComment;
+  parent?: IComment;
   children: IComment[];
 }

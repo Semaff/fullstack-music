@@ -3,7 +3,7 @@ import { Box, TextField, Button } from "@mui/material";
 import TrackUploader from "@components/Uploader/TrackUploader";
 import { useMutation, useQueryClient } from "react-query";
 import { createTrack } from "@api/tracks/createTrack";
-import { validateName } from "utils/validations/validateName";
+import { validateName } from "@utils/validations/validateName";
 
 const TrackForm = () => {
   const queryClient = useQueryClient();
@@ -37,6 +37,7 @@ const TrackForm = () => {
 
   return (
     <Box
+      data-testid="track-form"
       component="form"
       onSubmit={handleSubmit}
       sx={{ display: "flex", flexDirection: "column", gap: "10px", alignItems: "center" }}

@@ -1,4 +1,4 @@
-import { passwordRegexp } from "utils/regexps/passwordRegexp";
+import { passwordRegexp } from "@utils/regexps/passwordRegexp";
 
 export const validatePassword = (password: string) => {
   const isCorrectPassword = passwordRegexp.test(password);

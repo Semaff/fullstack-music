@@ -2,7 +2,7 @@ import { createAlbum } from "@api/album";
 import { Box, Button, TextField } from "@mui/material";
 import React, { FormEvent, useState } from "react";
 import { useMutation, useQueryClient } from "react-query";
-import { validateName } from "utils/validations/validateName";
+import { validateName } from "@utils/validations/validateName";
 
 const AlbumForm = () => {
   const [name, setName] = useState("");
@@ -26,6 +26,7 @@ const AlbumForm = () => {
 
   return (
     <Box
+      data-testid="album-form"
       sx={{
         display: "flex",
         flexDirection: "column",

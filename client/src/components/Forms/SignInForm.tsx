@@ -3,8 +3,8 @@ import Router from "next/router";
 import { signin } from "@api/user";
 import { Box, Button, TextField } from "@mui/material";
 import { useMutation } from "react-query";
-import { validateEmail } from "utils/validations/validateEmail";
-import { validatePassword } from "utils/validations/validatePassword";
+import { validateEmail } from "@utils/validations/validateEmail";
+import { validatePassword } from "@utils/validations/validatePassword";
 
 const SignInForm = () => {
   const [email, setEmail] = useState("");
@@ -28,6 +28,7 @@ const SignInForm = () => {
 
   return (
     <Box
+      data-testid="signin-form"
       sx={{
         display: "flex",
         flexDirection: "column",

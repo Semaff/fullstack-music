@@ -28,6 +28,7 @@ const Playlist = ({ playlist, user }: PlaylistProps) => {
 
   return (
     <Box
+      data-testid="playlist"
       onClick={() => Router.push(ERoutes.PLAYLIST + "/" + playlist.id)}
       sx={{
         cursor: "pointer",

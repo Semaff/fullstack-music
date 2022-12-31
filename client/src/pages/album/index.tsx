@@ -3,7 +3,7 @@ import { findMe } from "@api/user";
 import Album from "@components/Album/Album";
 import AlbumForm from "@components/Forms/AlbumForm";
 import { Box } from "@mui/material";
-import WithLeftbar from "layouts/WithLeftbar";
+import WithLeftbar from "@layouts/WithLeftbar";
 import { GetServerSideProps } from "next";
 import React from "react";
 import { dehydrate, QueryClient, useQuery } from "react-query";

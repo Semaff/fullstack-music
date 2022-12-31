@@ -3,7 +3,7 @@ import { findMyTracks } from "@api/tracks";
 import AlbumTrack from "@components/Track/AlbumTrack";
 import Track from "@components/Track/Track";
 import { Box, Button, Typography } from "@mui/material";
-import WithLeftbar from "layouts/WithLeftbar";
+import WithLeftbar from "@layouts/WithLeftbar";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
@@ -53,7 +53,7 @@ const AlbumItemPage = () => {
           <Typography>Amount of Tracks - {album?.tracks?.length}</Typography>
         </Box>
 
-        <Button onClick={handleEditToggle} variant="contained">
+        <Button onClick={handleEditToggle} variant="contained" data-testid="edit-button">
           {!isEdit ? "Add Tracks" : "Done"}
         </Button>
 
