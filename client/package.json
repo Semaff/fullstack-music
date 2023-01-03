@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest --watch"
+    "test": "jest --watch",
+    "test:e2e": "cypress run",
+    "cypress": "cypress open"
   },
   "dependencies": {
     "@emotion/react": "^11.10.5",
@@ -21,6 +23,7 @@
     "react-query": "^3.39.2"
   },
   "devDependencies": {
+    "@testing-library/cypress": "^9.0.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^14.4.3",
@@ -29,6 +32,7 @@
     "@types/react-dom": "18.0.8",
     "@typescript-eslint/eslint-plugin": "^5.41.0",
     "@typescript-eslint/parser": "^5.41.0",
+    "cypress": "^12.2.0",
     "eslint": "8.26.0",
     "eslint-config-next": "13.0.0",
     "eslint-config-prettier": "^8.5.0",

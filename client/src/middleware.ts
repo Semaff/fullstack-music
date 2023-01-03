@@ -36,7 +36,7 @@ export const config = {
      * - api (API routes)
      * - static (static files)
      * - favicon.ico (favicon file)
-     * - _next (nest.js reserved routes)
+     * - _next (next.js reserved routes)
      */
     "/((?!api|static|favicon.ico|_next).*)"
   ]

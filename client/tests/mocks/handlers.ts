@@ -49,5 +49,9 @@ export const handlers = [
   */
   rest.get(`${SERVER_URL}/user`, (req, res, ctx) => {
     return res(ctx.status(200), ctx.json(user));
+  }),
+
+  rest.get(`${SERVER_URL}/user/refresh`, (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json(user));
   })
 ];
