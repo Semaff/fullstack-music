@@ -1,16 +1,20 @@
 import { ITrack } from "@typings/tracks/ITrack";
 import React, { createContext, useState, FC, PropsWithChildren, useContext } from "react";
-import { TrackContextInitialState } from "./TrackContextState";
+import { TrackContextInitialState, TrackContextValues } from "./TrackContextState";
 
-const TrackContext = createContext(TrackContextInitialState);
+export const TrackContext = createContext(TrackContextInitialState);
+export const useTrackContext = () => useContext(TrackContext);
 
-const TrackProvider: FC<PropsWithChildren> = ({ children }) => {
-  const [track, setTrack] = useState<ITrack | null>(null);
-  const [isActive, setIsActive] = useState(false);
-  const [volume, setVolume] = useState(100);
-  const [time, setTime] = useState(0);
-  const [duration, setDuration] = useState(0);
-  const [currentPlaylist, setCurrentPlaylist] = useState<ITrack[]>([]);
+const TrackProvider: FC<PropsWithChildren & Partial<TrackContextValues>> = ({
+  children,
+  ...props
+}) => {
+  const [track, setTrack] = useState<ITrack | null>(props.track || null);
+  const [isActive, setIsActive] = useState(props.isActive || false);
+  const [volume, setVolume] = useState(props.volume || 100);
+  const [time, setTime] = useState(props.time || 0);
+  const [duration, setDuration] = useState(props.duration || 0);
+  const [currentPlaylist, setCurrentPlaylist] = useState<ITrack[]>(props.currentPlaylist || []);
 
   return (
     <TrackContext.Provider
@@ -34,5 +38,4 @@ const TrackProvider: FC<PropsWithChildren> = ({ children }) => {
   );
 };
 
-export const useTrackContext = () => useContext(TrackContext);
 export default TrackProvider;
