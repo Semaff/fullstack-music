@@ -1,37 +1,35 @@
-import { findMe } from "@api/user";
 import { Paper, Box } from "@mui/material";
+import { IUser } from "modules/User";
 import React, { useState } from "react";
-import { useQuery } from "react-query";
-import LeftbarFooter from "./LeftbarFooter";
-import LeftbarHeader from "./LeftbarHeader";
-import LeftbarList from "./LeftbarList";
-import LeftbarUpper from "./LeftbarUpper";
+import List from "./List/List";
+import Upper from "./Upper/Upper";
+import Header from "./Header/Header";
+import Footer from "./Footer/Footer";
 
-const Leftbar = () => {
+interface LeftbarProps {
+  user: IUser | undefined;
+}
+
+const Leftbar = ({ user }: LeftbarProps) => {
   const [isActive, setIsActive] = useState(false);
-  const { data: user } = useQuery("findMe", () => findMe(), {
-    refetchOnWindowFocus: false
-  });
 
   return (
     <>
-      <LeftbarUpper setIsActive={setIsActive} />
+      <Upper setIsActive={setIsActive} />
 
-      {isActive && (
-        <Box
-          onClick={() => setIsActive(false)}
-          sx={{
-            display: { lg: "none", xs: "flex" },
-            backgroundColor: "rgba(0, 0, 0, 0.6)",
-            width: "100vw",
-            height: "100vh",
-            position: "fixed",
-            zIndex: "10",
-            top: 0,
-            left: 0
-          }}
-        />
-      )}
+      <Box
+        onClick={() => setIsActive(false)}
+        sx={{
+          display: { lg: "none", xs: isActive ? "flex" : "none" },
+          backgroundColor: "rgba(0, 0, 0, 0.6)",
+          width: "100vw",
+          height: "100vh",
+          position: "fixed",
+          zIndex: "10",
+          top: 0,
+          left: 0
+        }}
+      />
 
       <Paper
         sx={{
@@ -47,9 +45,9 @@ const Leftbar = () => {
           padding: "30px 10px"
         }}
       >
-        <LeftbarHeader />
-        <LeftbarList user={user} />
-        <LeftbarFooter />
+        <Header />
+        <List user={user} />
+        <Footer />
       </Paper>
     </>
   );
