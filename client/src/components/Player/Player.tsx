@@ -6,7 +6,6 @@ import PlayerTimeRange from "./TimeRange/TimeRange";
 import PlayerVolumeRange from "./VolumeRange/VolumeRange";
 import useTrackStore from "store/track";
 import Image from "next/image";
-import { IUser } from "modules/User";
 
 let audio: HTMLAudioElement | null = null;
 

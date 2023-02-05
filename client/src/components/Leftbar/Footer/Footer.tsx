@@ -5,7 +5,7 @@ import { logout } from "modules/User";
 import { useMutation, useQueryClient } from "react-query";
 import { ERoutes } from "types/routes/ERoutes";
 
-const LeftbarFooter = () => {
+const Footer = () => {
   const queryClient = useQueryClient();
 
   const { mutate: logoutMutate } = useMutation(logout, {
@@ -38,4 +38,4 @@ const LeftbarFooter = () => {
   );
 };
 
-export default LeftbarFooter;
+export default Footer;
