@@ -1,4 +1,4 @@
-import { emailRegexp } from "@utils/regexps/emailRegexp";
+import { emailRegexp } from "utils/regexps/emailRegexp";
 
 export const validateEmail = (email: string) => {
   const isEmail = emailRegexp.test(email);
