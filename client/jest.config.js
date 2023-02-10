@@ -16,13 +16,15 @@ const customJestConfig = {
   moduleDirectories: ["node_modules", "<rootDir>/"],
   testEnvironment: "jest-environment-jsdom",
   moduleNameMapper: {
-    "^@pages/(.*)$": "<rootDir>/src/pages/$1",
-    "^@components/(.*)$": "<rootDir>/src/components/$1",
-    "^@api/(.*)$": "<rootDir>/src/api/$1",
-    "^@utils/(.*)$": "<rootDir>/src/utils/$1",
-    "^@contexts/(.*)$": "<rootDir>/src/contexts/$1",
-    "^@layouts/(.*)$": "<rootDir>/src/layouts/$1",
-    "^@typings/(.*)$": "<rootDir>/src/types/$1"
+    "^api/(.*)$": "<rootDir>/src/api/$1",
+    "^components/(.*)$": "<rootDir>/src/components/$1",
+    "^pages/(.*)$": "<rootDir>/src/pages/$1",
+    "^layouts/(.*)$": "<rootDir>/src/layouts/$1",
+    "^modules/(.*)$": "<rootDir>/src/modules/$1",
+    "^store/(.*)$": "<rootDir>/src/store/$1",
+    "^types/(.*)$": "<rootDir>/src/types/$1",
+    "^utils/(.*)$": "<rootDir>/src/utils/$1",
+    "^ui/(.*)$": "<rootDir>/src/ui/$1"
   }
 };
 

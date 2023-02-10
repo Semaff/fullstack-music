@@ -39,7 +39,6 @@ const CommentCard = ({ track, comment, user }: CommentCardProps) => {
         }}
       >
         <Box sx={{ display: "flex", alignItems: "center", gap: "10px" }}>
-          <Image src="" alt="track" width={100} height={100} />
           <Typography fontSize={20}>{comment.text}</Typography>
         </Box>
 
@@ -63,7 +62,6 @@ const CommentCard = ({ track, comment, user }: CommentCardProps) => {
           }}
         >
           <Box sx={{ display: "flex", alignItems: "center", gap: "10px" }}>
-            <Image src="" alt="track" width={100} height={100} />
             <Typography fontSize={20}>{el.text}</Typography>
           </Box>
         </Box>

@@ -62,7 +62,6 @@ const TrackCard = ({ user, track, playlist, children }: TrackCardProps) => {
       }}
     >
       <Box sx={{ display: "flex", alignItems: "center", gap: "10px" }}>
-        <Image src="" alt="track" width={100} height={100} />
         <Typography fontSize={20}>{formatName(track.name)}</Typography>
       </Box>
 
@@ -72,7 +71,7 @@ const TrackCard = ({ user, track, playlist, children }: TrackCardProps) => {
             <PauseIcon fontSize="large" />
           </IconButton>
         ) : (
-          <IconButton onClick={handlePlay}>
+          <IconButton data-testid="play-btn" onClick={handlePlay}>
             <PlayArrowIcon fontSize="large" />
           </IconButton>
         )}

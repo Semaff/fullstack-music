@@ -68,6 +68,7 @@ const Player = () => {
 
   return (
     <Paper
+      data-testid="player"
       sx={{
         backgroundColor: "#fff",
         position: "fixed",
@@ -84,7 +85,6 @@ const Player = () => {
       elevation={5}
     >
       <Box sx={{ display: "flex", alignItems: "center", gap: "10px" }}>
-        <Image src="" alt="track" width={80} height={80} />
         <Typography fontSize={20}>{formatName(track?.name || "")}</Typography>
       </Box>
 

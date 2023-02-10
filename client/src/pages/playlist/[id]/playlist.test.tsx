@@ -3,8 +3,8 @@ import { cleanup, fireEvent, screen } from "@testing-library/react";
 import { renderWithClient } from "../../../../helpers/renderWithClient";
 import { act } from "react-dom/test-utils";
 import { playlists } from "../../../../mocks/playlists";
-import { formatName } from "@utils/formatName";
 import { tracks } from "../../../../mocks/tracks";
+import { formatName } from "utils/formatName";
 
 jest.mock("next/router", () => ({
   useRouter: () => ({
