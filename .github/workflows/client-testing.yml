@@ -58,9 +58,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
-      - name: Install dependencies
-        working-directory: client
-        run: npm ci
       - name: E2E testing with cypress
         uses: cypress-io/github-action@v5
         with:
