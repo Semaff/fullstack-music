@@ -12,7 +12,9 @@
     "test:e2e": "cypress run",
     "cypress": "cypress open",
     "storybook": "start-storybook -s .msw -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "create:component": "node cli/component.ts --name",
+    "create:module": "node cli/module.ts --name"
   },
   "dependencies": {
     "@emotion/react": "^11.10.5",
@@ -42,6 +44,7 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^14.4.3",
+    "@types/minimist": "^1.2.2",
     "@types/node": "^18.11.7",
     "@types/react": "18.0.24",
     "@types/react-dom": "18.0.8",
