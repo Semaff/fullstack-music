@@ -19,14 +19,18 @@ const isTesting = process.env.NODE_ENV === "TEST";
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
         type: "postgres",
-        host: configService.get<string>("POSTGRES_HOST"),
-        port: configService.get<number>("POSTGRES_PORT"),
-        username: configService.get<string>("POSTGRES_USERNAME"),
-        password: configService.get<string>("POSTGRES_PASSWORD"),
-        database: configService.get<string>("POSTGRES_DB"),
+        host: configService.get<string>("PGHOST"),
+        port: configService.get<number>("PGPORT"),
+        username: configService.get<string>("PGUSER"),
+        password: configService.get<string>("PGPASSWORD"),
+        database: configService.get<string>("PGDATABASE"),
+        url: configService.get<string>("DATABASE_URL"),
         entities: ENTITIES,
         dropSchema: isTesting,
-        synchronize: !isProduction
+        synchronize: !isProduction,
+        ssl: {
+          rejectUnauthorized: false
+        }
       }),
       inject: [ConfigService]
     })
