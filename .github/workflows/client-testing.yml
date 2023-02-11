@@ -61,9 +61,6 @@ jobs:
       - name: Install dependencies
         working-directory: client
         run: npm ci
-      - name: Run app on testing mode
-        working-directory: client
-        run: npm run start:test
       - name: E2E testing with cypress
         uses: cypress-io/github-action@v5
         with:
