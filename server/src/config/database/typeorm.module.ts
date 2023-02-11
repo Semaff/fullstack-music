@@ -1,12 +1,12 @@
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
-import { User } from "src/modules/auth/entities/user.entity";
-import { Profile } from "src/modules/profile/entities/profile.entity";
-import { Album } from "src/modules/album/entities/album.entity";
-import { Track } from "src/modules/track/entities/track.entity";
-import { Playlist } from "src/modules/playlist/entities/playlist.entity";
-import { Comment } from "src/modules/comment/entities/comment.entity";
+import { User } from "../../modules/auth/entities/user.entity";
+import { Profile } from "../../modules/profile/entities/profile.entity";
+import { Album } from "../../modules/album/entities/album.entity";
+import { Track } from "../../modules/track/entities/track.entity";
+import { Playlist } from "../../modules/playlist/entities/playlist.entity";
+import { Comment } from "../../modules/comment/entities/comment.entity";
 
 export const ENTITIES = [User, Profile, Track, Album, Playlist, Comment];
 
