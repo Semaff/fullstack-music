@@ -3,6 +3,7 @@ import type { NextRequest } from "next/server";
 
 export async function middleware(req: NextRequest) {
   if (process.env.NEXT_PUBLIC_IS_TESTING === "true") {
+    console.log("The client app is working in test mode");
     return NextResponse.next();
   }
 
