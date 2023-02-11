@@ -30,6 +30,9 @@ jobs:
       matrix:
         node: [16.x]
     needs: [install-cache]
+    defaults:
+      run:
+        working-directory: client
     steps:
       - name: Checkout Commit
         uses: actions/checkout@v3
@@ -42,6 +45,9 @@ jobs:
       matrix:
         node: [16.x]
     needs: [install-cache]
+    defaults:
+      run:
+        working-directory: client
     steps:
       - name: Checkout Commit
         uses: actions/checkout@v3
@@ -56,11 +62,13 @@ jobs:
       matrix:
         node-version: [16.x]
     needs: [unit-test, e2e-test]
+    defaults:
+      run:
+        working-directory: client
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
       - uses: actions/checkout@v3
       - name: Building
-        working-directory: client
         run: npm run build
