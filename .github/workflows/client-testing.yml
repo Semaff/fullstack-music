@@ -16,13 +16,14 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
-          cache: "npm"
-          cache-dependency-path: |
-            client/package-lock.json
-            server/package-lock.json
       - name: Install dependencies
         working-directory: client
         run: npm ci
+      - name: Cache dependencies
+        uses: actions/upload-artifact@v3
+        with:
+          name: npm-cache
+          path: client
 
   unit-test:
     runs-on: ubuntu-latest
@@ -30,13 +31,16 @@ jobs:
       matrix:
         node: [16.x]
     needs: [install-cache]
-    defaults:
-      run:
-        working-directory: client
     steps:
       - name: Checkout Commit
         uses: actions/checkout@v3
+      - name: Upload dependencies
+        uses: actions/download-artifact@v3
+        with:
+          name: npm-cache
+          path: client
       - name: Run unit tests
+        working-directory: client
         run: npm run test
 
   e2e-test:
@@ -45,9 +49,6 @@ jobs:
       matrix:
         node: [16.x]
     needs: [install-cache]
-    defaults:
-      run:
-        working-directory: client
     steps:
       - name: Checkout Commit
         uses: actions/checkout@v3
@@ -62,13 +63,11 @@ jobs:
       matrix:
         node-version: [16.x]
     needs: [unit-test, e2e-test]
-    defaults:
-      run:
-        working-directory: client
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
       - uses: actions/checkout@v3
       - name: Building
+        working-directory: client
         run: npm run build
