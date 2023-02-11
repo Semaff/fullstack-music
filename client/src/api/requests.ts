@@ -5,7 +5,4 @@ const request = axios.create({
   withCredentials: true
 });
 
-console.log(1);
-
-
 export { request };
