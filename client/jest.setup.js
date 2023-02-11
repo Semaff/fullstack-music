@@ -1,7 +1,10 @@
 import "@testing-library/jest-dom";
+import { setupServer } from "msw/node";
+import { handlers } from "./msw/handlers/index";
 
 import { setLogger } from "react-query";
-import { server } from "./.msw/server";
+
+export const server = setupServer(...handlers);
 
 beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());
