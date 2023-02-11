@@ -19,12 +19,17 @@ jobs:
         with:
           node-version: "12.x"
       - name: Install dependencies
+        working-directory: client
         run: npm ci
       - name: Check eslint
+        working-directory: client
         run: npm run lint
       - name: Run app on testing mode
+        working-directory: client
         run: npm run start:test
       - name: Jest testing
+        working-directory: client
         run: npm run test
       - name: E2E with cypress testing
+        working-directory: client
         run: npm run test:e2e
