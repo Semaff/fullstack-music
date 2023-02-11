@@ -11,7 +11,7 @@ const FileUploader = ({ file, setFile, ...props }: FileUploaderProps) => {
 
   return (
     <>
-      <Button onClick={() => inputRef.current?.click()}>{file ? file.name : "Upload File"}</Button>
+      <Button onClick={() => inputRef.current?.click()}>{file ? file.name : 'Upload File'}</Button>
 
       <TextField
         sx={{ display: "none" }}
