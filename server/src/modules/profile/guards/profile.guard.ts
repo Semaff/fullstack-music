@@ -1,7 +1,7 @@
 import { CanActivate, ExecutionContext } from "@nestjs/common";
 import { Request } from "express";
 import { Injectable } from "@nestjs/common";
-import { ProfileService } from "src/modules/profile/profile.service";
+import { ProfileService } from "../../profile/profile.service";
 import { HttpException } from "@nestjs/common";
 import { HttpStatus } from "@nestjs/common";
 

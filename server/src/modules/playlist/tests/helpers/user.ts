@@ -1,5 +1,5 @@
-import { SignUpDto } from "src/modules/auth/dto/signup.dto";
-import { User } from "src/modules/auth/entities/user.entity";
+import { SignUpDto } from "../../../auth/dto/signup.dto";
+import { User } from "../../../auth/entities/user.entity";
 
 export const signUpDto: SignUpDto = {
   firstName: "Bob",

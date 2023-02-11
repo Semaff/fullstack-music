@@ -1,5 +1,5 @@
-import { CreateTrackDto } from "src/modules/track/dto/create-track.dto";
-import { Track } from "src/modules/track/entities/track.entity";
+import { CreateTrackDto } from "../../../track/dto/create-track.dto";
+import { Track } from "../../../track/entities/track.entity";
 import { user } from "./user";
 
 export const createTrackDto: CreateTrackDto = {

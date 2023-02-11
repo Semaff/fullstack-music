@@ -4,14 +4,14 @@ import * as request from "supertest";
 import { AppModule } from "src/app.module";
 import * as cookieParser from "cookie-parser";
 import { CommentService } from "../comment.service";
-import { AuthService } from "src/modules/auth/auth.service";
+import { AuthService } from "../../auth/auth.service";
 import { createCommentDto, updateCommentDto } from "./helpers/comments";
-import { User } from "src/modules/auth/entities/user.entity";
+import { User } from "../../auth/entities/user.entity";
 import { signUpDto } from "./helpers/user";
 import { Comment } from "../entities/comment.entity";
 import { createTrackDto } from "./helpers/track";
-import { Track } from "src/modules/track/entities/track.entity";
-import { TrackService } from "src/modules/track/track.service";
+import { Track } from "../../track/entities/track.entity";
+import { TrackService } from "../../track/track.service";
 
 describe("CommentController (e2e)", () => {
   let app: INestApplication;

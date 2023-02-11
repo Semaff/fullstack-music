@@ -1,7 +1,7 @@
 import { ModuleMetadata } from "@nestjs/common";
 import { getRepositoryToken } from "@nestjs/typeorm";
-import { AlbumService } from "src/modules/album/album.service";
-import { Album } from "src/modules/album/entities/album.entity";
+import { AlbumService } from "../../../../album/album.service";
+import { Album } from "../../../../album/entities/album.entity";
 import { albums } from "../album";
 
 export const ALBUM_REPOSITORY_TOKEN = getRepositoryToken(Album);

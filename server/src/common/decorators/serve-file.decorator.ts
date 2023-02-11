@@ -1,7 +1,7 @@
 import { applyDecorators, UseInterceptors } from "@nestjs/common";
 import { FileInterceptor } from "@nestjs/platform-express";
 import { diskStorage } from "multer";
-import { generateRandomName } from "src/common/utils/generateRandomName";
+import { generateRandomName } from "../../common/utils/generateRandomName";
 import * as path from "path";
 
 export function ServeFile(fileName: string) {

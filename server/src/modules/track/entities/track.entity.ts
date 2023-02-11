@@ -1,7 +1,7 @@
-import { Album } from "src/modules/album/entities/album.entity";
-import { User } from "src/modules/auth/entities/user.entity";
-import { Comment } from "src/modules/comment/entities/comment.entity";
-import { Playlist } from "src/modules/playlist/entities/playlist.entity";
+import { Album } from "../../album/entities/album.entity";
+import { User } from "../../auth/entities/user.entity";
+import { Comment } from "../../comment/entities/comment.entity";
+import { Playlist } from "../../playlist/entities/playlist.entity";
 import { Column, Entity, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()

@@ -3,16 +3,16 @@ import { INestApplication, ValidationPipe } from "@nestjs/common";
 import * as request from "supertest";
 import { AppModule } from "src/app.module";
 import * as cookieParser from "cookie-parser";
-import { AuthService } from "src/modules/auth/auth.service";
-import { User } from "src/modules/auth/entities/user.entity";
+import { AuthService } from "../../auth/auth.service";
+import { User } from "../../auth/entities/user.entity";
 import { signUpDto } from "./helpers/user";
 import { createTrackDto } from "./helpers/track";
-import { Track } from "src/modules/track/entities/track.entity";
-import { TrackService } from "src/modules/track/track.service";
+import { Track } from "../../track/entities/track.entity";
+import { TrackService } from "../../track/track.service";
 import { AlbumService } from "../album.service";
 import { createAlbumDto, updateAlbumDto } from "./helpers/album";
 import { Album } from "../entities/album.entity";
-import { ProfileService } from "src/modules/profile/profile.service";
+import { ProfileService } from "../../profile/profile.service";
 
 describe("albumController (e2e)", () => {
   let app: INestApplication;

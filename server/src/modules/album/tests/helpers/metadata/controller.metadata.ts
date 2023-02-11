@@ -1,11 +1,11 @@
 import { ModuleMetadata } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
-import { AlbumController } from "src/modules/album/album.controller";
-import { AlbumService } from "src/modules/album/album.service";
-import { UpdateAlbumDto } from "src/modules/album/dto/update-album.dto";
-import { AuthService } from "src/modules/auth/auth.service";
-import { ProfileService } from "src/modules/profile/profile.service";
-import { Track } from "src/modules/track/entities/track.entity";
+import { AlbumController } from "../../../../album/album.controller";
+import { AlbumService } from "../../../../album/album.service";
+import { UpdateAlbumDto } from "../../../../album/dto/update-album.dto";
+import { AuthService } from "../../../../auth/auth.service";
+import { ProfileService } from "../../../../profile/profile.service";
+import { Track } from "../../../../track/entities/track.entity";
 import { albums } from "../album";
 
 export const mockedToken = `randomtoken123`;

@@ -1,4 +1,4 @@
-import { JwtUser } from "src/modules/auth/interfaces/JwtUser";
+import { JwtUser } from "../../src/modules/auth/interfaces/JwtUser";
 
 declare global {
   namespace Express {

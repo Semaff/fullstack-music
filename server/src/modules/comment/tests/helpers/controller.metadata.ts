@@ -1,6 +1,6 @@
 import { ModuleMetadata } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
-import { AuthService } from "src/modules/auth/auth.service";
+import { AuthService } from "../../../auth/auth.service";
 import { CommentController } from "../../comment.controller";
 import { CommentService } from "../../comment.service";
 import { UpdateCommentDto } from "../../dto/update-comment.dto";

@@ -1,7 +1,7 @@
 import { ModuleMetadata } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
-import { AuthService } from "src/modules/auth/auth.service";
-import { Track } from "src/modules/track/entities/track.entity";
+import { AuthService } from "../../../auth/auth.service";
+import { Track } from "../../../track/entities/track.entity";
 import { UpdatePlaylistDto } from "../../dto/update-playlist.dto";
 import { PlaylistController } from "../../playlist.controller";
 import { PlaylistService } from "../../playlist.service";

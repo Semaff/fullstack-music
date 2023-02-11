@@ -1,7 +1,7 @@
 import { ModuleMetadata } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
-import { AuthService } from "src/modules/auth/auth.service";
-import { UpdateTrackDto } from "src/modules/track/dto/update-track.dto";
+import { AuthService } from "../../../auth/auth.service";
+import { UpdateTrackDto } from "../../../track/dto/update-track.dto";
 import { ProfileController } from "../../profile.controller";
 import { ProfileService } from "../../profile.service";
 import { profiles } from "./profile";

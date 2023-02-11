@@ -1,5 +1,5 @@
-import { User } from "src/modules/auth/entities/user.entity";
-import { Track } from "src/modules/track/entities/track.entity";
+import { User } from "../../auth/entities/user.entity";
+import { Track } from "../../track/entities/track.entity";
 import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 /* https://github.com/typeorm/typeorm/blob/master/docs/relations-faq.md */

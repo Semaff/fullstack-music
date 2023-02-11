@@ -1,5 +1,5 @@
-import { Track } from "src/modules/track/entities/track.entity";
-import { User } from "src/modules/auth/entities/user.entity";
+import { Track } from "../../track/entities/track.entity";
+import { User } from "../../auth/entities/user.entity";
 import { Column, Entity, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
