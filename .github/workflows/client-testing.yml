@@ -65,7 +65,7 @@ jobs:
         working-directory: client
         run: npm run start:test
       - name: E2E testing with cypress
-        uses: cypress-io/github-action@v5.x.x
+        uses: cypress-io/github-action@v5
         with:
           project: client
           start: npm run start:dev
