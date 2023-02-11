@@ -65,4 +65,4 @@ jobs:
         uses: cypress-io/github-action@v5
         with:
           working-directory: client
-          start: npm run start:dev
+          start: npm run start:test
