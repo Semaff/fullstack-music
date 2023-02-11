@@ -1,73 +1,69 @@
-name: Testing client
-run-name: ${{ github.actor }} is testing Music App 🚀
+name: Test App
+run-name: ${{ github.actor }} is testing out Music App 🚀
 on: [pull_request]
 jobs:
-  # As its name stands for, this jobs will install the npm dependencies and cache them
-  # unless they have been cached in a previous workflow run and remained unchanged.
-  install-cache:
+  eslint:
     runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [16.x]
     steps:
-      - name: Checkout Commit
-        uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node }}
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+      - uses: actions/checkout@v3
+      - name: Use Node.js
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
       - name: Install dependencies
         working-directory: client
         run: npm ci
-      - name: Cache dependencies
-        uses: actions/upload-artifact@v3
-        with:
-          name: npm-cache
-          path: client
-
-  unit-test:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node: [16.x]
-    needs: [install-cache]
-    steps:
-      - name: Checkout Commit
-        uses: actions/checkout@v3
-      - name: Upload dependencies
-        uses: actions/download-artifact@v3
-        with:
-          name: npm-cache
-          path: client
-      - name: Run unit tests
+      - name: Check eslint
         working-directory: client
-        run: npm run test
+        run: npm run lint
 
-  e2e-test:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node: [16.x]
-    needs: [install-cache]
-    steps:
-      - name: Checkout Commit
-        uses: actions/checkout@v3
-      - name: Run e2e tests
-        run: |
-          npm run start:test
-          npm run test:e2e
-
-  build:
+  unit-testing:
     runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [16.x]
-    needs: [unit-test, e2e-test]
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
       - uses: actions/checkout@v3
-      - name: Building
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+      - name: Install dependencies
         working-directory: client
-        run: npm run build
+        run: npm ci
+      - name: Testing
+        working-directory: client
+        run: npm run test
+
+  e2e-testing:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16.x]
+    steps:
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+      - uses: actions/checkout@v3
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+      - name: Install dependencies
+        working-directory: client
+        run: npm ci
+      - name: Run app on testing mode
+        working-directory: client
+        run: npm run start:test
+      - name: E2E testing with cypress
+        working-directory: client
+        run: npm run test:e2e
