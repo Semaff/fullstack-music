@@ -1,0 +1,61 @@
+name: Testing client
+run-name: ${{ github.actor }} is testing Music App 🚀
+on: [pull_request]
+jobs:
+  # As its name stands for, this jobs will install the npm dependencies and cache them
+  # unless they have been cached in a previous workflow run and remained unchanged.
+  install-cache:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16.x]
+    steps:
+      - name: Checkout Commit
+        uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+          cache: "npm"
+      - name: Install dependencies
+        working-directory: client
+        run: npm ci
+
+  unit-test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [16.x]
+    steps:
+      - name: Checkout Commit
+        uses: actions/checkout@v3
+      - name: Run unit tests
+        run: npm run test
+
+  e2e-test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [16.x]
+    steps:
+      - name: Checkout Commit
+        uses: actions/checkout@v3
+      - name: Run e2e tests
+        run: |
+          npm run start:test
+          npm run test:e2e
+
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16.x]
+    needs: [unit-test, e2e-test]
+    steps:
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+      - uses: actions/checkout@v3
+      - name: Building
+        working-directory: client
+        run: npm run build
