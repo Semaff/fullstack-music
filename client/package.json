@@ -14,7 +14,6 @@
     "storybook": "start-storybook -s .msw -p 6006",
     "build-storybook": "build-storybook",
     "precommit": "lint-staged",
-    "prepare": "cd .. && husky install client/.husky",
     "create:component": "node cli/component.ts --name",
     "create:module": "node cli/module.ts --name"
   },
@@ -75,15 +74,16 @@
   "msw": {
     "workerDirectory": ".msw"
   },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "prettier --write",
-      "eslint --fix"
-    ]
-  },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
     }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "prettier --write",
+      "eslint --fix",
+      "git add"
+    ]
   }
 }
