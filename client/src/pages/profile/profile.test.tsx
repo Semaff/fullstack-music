@@ -4,7 +4,7 @@ import { renderWithClient } from "../../../helpers/renderWithClient";
 import { user } from "../../../mocks/user";
 import { rest } from "msw";
 import { act } from "react-dom/test-utils";
-import { server } from "../../../msw/server";
+import { server } from "../../../jest.setup";
 
 const SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL;
 

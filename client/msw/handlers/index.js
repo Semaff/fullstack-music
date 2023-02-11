@@ -2,7 +2,7 @@ import { albumsHandlers } from "./albumsHandlers";
 import { playlistsHandlers } from "./playlistsHandlers";
 import { tracksHandlers } from "./tracksHandlers";
 import { userHandlers } from "./userHandlers";
-import { artistHandlers } from "./artistHandlers";
+import { artistHandlers } from "./artistHandlers.js";
 
 export const handlers = [
   ...userHandlers,
