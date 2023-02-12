@@ -8,6 +8,7 @@ interface FileUploaderProps extends InputHTMLAttributes<HTMLInputElement> {
 
 const FileUploader = ({ file, setFile, ...props }: FileUploaderProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
+  console.log("ABC");
 
   return (
     <>
