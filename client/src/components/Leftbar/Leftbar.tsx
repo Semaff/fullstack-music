@@ -12,6 +12,7 @@ interface LeftbarProps {
 
 const Leftbar = ({ user }: LeftbarProps) => {
   const [isActive, setIsActive] = useState(false);
+  console.log("B");
 
   return (
     <>
