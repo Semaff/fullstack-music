@@ -24,7 +24,12 @@ const customJestConfig = {
     "^store/(.*)$": "<rootDir>/src/store/$1",
     "^types/(.*)$": "<rootDir>/src/types/$1",
     "^utils/(.*)$": "<rootDir>/src/utils/$1",
-    "^ui/(.*)$": "<rootDir>/src/ui/$1"
+    "^ui/(.*)$": "<rootDir>/src/ui/$1",
+    "^cypress/(.*)$": ["<rootDir>/cypress/$1"],
+    "^helpers/(.*)$": ["<rootDir>/helpers/$1"],
+    "^mocks/(.*)$": ["<rootDir>/mocks/$1"],
+    "^.storybook/(.*)$": ["<rootDir>/.storybook/$1"],
+    "^.msw/(.*)$": ["<rootDir>/.msw/$1"]
   }
 };
 
