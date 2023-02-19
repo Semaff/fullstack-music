@@ -3,36 +3,22 @@ import TimeRange from "./TimeRange";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import useTrackStore from "store/track";
 
-interface TimeRangeArgs {
-  duration: number;
-  audio: HTMLAudioElement;
-}
-
-const audio = {} as HTMLAudioElement;
-
 export default {
   title: "Components/Player/TimeRange",
-  component: TimeRange,
-  argTypes: {
-    duration: { control: "number", min: 0, max: 1000, optional: true }
-  },
-  args: {
-    audio,
-    duration: 0
-  }
+  component: TimeRange
 } as ComponentMeta<typeof TimeRange>;
 
-const Template: ComponentStory<any> = (args: TimeRangeArgs) => {
-  const { setDuration } = useTrackStore((store) => ({
-    setDuration: store.setDuration
-  }));
+const Template: ComponentStory<typeof TimeRange> = (args) => {
+  const { setDuration } = useTrackStore();
 
   useEffect(() => {
-    setDuration(args.duration || 0);
-  }, [args.duration]);
+    setDuration(100);
+  }, []);
 
   return <TimeRange {...args} />;
 };
 
 export const Default = Template.bind({});
-Default.args = {};
+Default.args = {
+  audio: new Audio()
+};

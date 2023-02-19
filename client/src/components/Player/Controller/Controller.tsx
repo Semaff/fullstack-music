@@ -11,23 +11,19 @@ interface ControllerProps {
 const Controller = ({ audio }: ControllerProps) => {
   const [isActive, setIsActive] = useTrackStore((state) => [state.isActive, state.setIsActive]);
 
-  const handlePlayTrack = () => {
-    setIsActive(true);
-    audio.play();
+  const handleTogglePlay = () => {
+    setIsActive(!isActive);
+
+    if (isActive) {
+      audio.pause();
+    } else {
+      audio.play();
+    }
   };
 
-  const handlePauseTrack = () => {
-    setIsActive(false);
-    audio.pause();
-  };
-
-  return isActive ? (
-    <IconButton onClick={handlePauseTrack}>
-      <PauseIcon fontSize="large" />
-    </IconButton>
-  ) : (
-    <IconButton onClick={handlePlayTrack}>
-      <PlayArrowIcon fontSize="large" />
+  return (
+    <IconButton data-testid={isActive ? "pause-btn" : "play-btn"} onClick={handleTogglePlay}>
+      {isActive ? <PauseIcon fontSize="large" /> : <PlayArrowIcon fontSize="large" />}
     </IconButton>
   );
 };

@@ -1,21 +1,30 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { Paper, Box, Typography } from "@mui/material";
 import { formatName } from "utils/formatName";
 import PlayerControl from "./Controller/Controller";
 import PlayerTimeRange from "./TimeRange/TimeRange";
 import PlayerVolumeRange from "./VolumeRange/VolumeRange";
 import useTrackStore from "store/track";
-import Image from "next/image";
-
-let audio: HTMLAudioElement | null = null;
 
 const Player = () => {
+  console.log(1, useTrackStore());
   const [track, setTrack] = useTrackStore((state) => [state.track, state.setTrack]);
   const [isActive, setIsActive] = useTrackStore((state) => [state.isActive, state.setIsActive]);
-  const { currentPlaylist, volume, setTime, setDuration } = useTrackStore((state) => state);
+  const { currentPlaylist, volume, setTime, setDuration } = useTrackStore();
+
+  const audioRef = useRef<HTMLAudioElement | null>(new Audio());
 
   useEffect(() => {
-    if (!audio) audio = new Audio();
+    if (!audioRef.current) {
+      audioRef.current = new Audio();
+    }
+
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current = null;
+      }
+    };
   }, []);
 
   useEffect(() => {
@@ -27,6 +36,7 @@ const Player = () => {
   }, [isActive]);
 
   const changeAudio = () => {
+    const audio = audioRef.current;
     if (!audio || !track) return;
 
     audio.src = track.file;
@@ -34,15 +44,18 @@ const Player = () => {
     audio.currentTime = 0;
 
     audio.onloadedmetadata = () => {
-      setDuration(audio?.duration || 0);
+      setDuration(audio.duration);
     };
 
     audio.ontimeupdate = () => {
-      setTime(audio?.currentTime || 0);
+      setTime(audio.currentTime);
     };
 
     audio.onended = () => {
-      if (!currentPlaylist) return;
+      if (!currentPlaylist) {
+        setIsActive(false);
+        return;
+      }
       const trackIndex = currentPlaylist.findIndex((el) => el.id === track.id);
       const nextTrack = currentPlaylist[trackIndex + 1];
       if (!nextTrack) {
@@ -54,15 +67,20 @@ const Player = () => {
   };
 
   const toggleAudioPlayback = () => {
-    if (!track || !isActive) {
-      // wrong
-      audio?.pause();
+    const audio = audioRef.current;
+    if (!track || !audio) return;
+
+    if (!isActive) {
+      audio.pause();
     } else {
-      audio?.play();
+      audio.play().catch((error) => {
+        console.error("Failed to play audio:", error);
+        setIsActive(false);
+      });
     }
   };
 
-  if (!track || !audio) {
+  if (!track || !audioRef.current) {
     return null;
   }
 
@@ -79,19 +97,17 @@ const Player = () => {
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
-        width: "100vw",
-        paddingLeft: "250px"
+        width: "100vw"
       }}
       elevation={5}
     >
       <Box sx={{ display: "flex", alignItems: "center", gap: "10px" }}>
-        <Typography fontSize={20}>{formatName(track?.name || "")}</Typography>
+        <Typography fontSize={20}>{formatName(track.name)}</Typography>
       </Box>
 
-      <PlayerVolumeRange audio={audio} />
-      <PlayerTimeRange audio={audio} />
-
-      {track.id && <PlayerControl audio={audio} />}
+      <PlayerVolumeRange audio={audioRef.current} />
+      <PlayerTimeRange audio={audioRef.current} />
+      <PlayerControl audio={audioRef.current} />
     </Paper>
   );
 };

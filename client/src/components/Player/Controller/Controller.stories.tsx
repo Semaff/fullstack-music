@@ -1,16 +1,31 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import Controller from "./Controller";
-
-const audio = {} as HTMLAudioElement;
+import useTrackStore from "store/track";
 
 export default {
   title: "Components/Player/Controller",
-  component: Controller,
-  args: { audio }
+  component: Controller
 } as ComponentMeta<typeof Controller>;
 
-const Template: ComponentStory<typeof Controller> = (args) => <Controller {...args} />;
+export const Playing: ComponentStory<typeof Controller> = (args) => {
+  const { setIsActive } = useTrackStore();
 
-export const Default = Template.bind({});
-Default.args = {};
+  useEffect(() => {
+    setIsActive(true);
+  }, []);
+
+  return <Controller {...args} />;
+};
+Playing.args = { audio: new Audio() };
+
+export const Paused: ComponentStory<typeof Controller> = (args) => {
+  const { setIsActive } = useTrackStore();
+
+  useEffect(() => {
+    setIsActive(false);
+  }, []);
+
+  return <Controller {...args} />;
+};
+Paused.args = { audio: new Audio() };

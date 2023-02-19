@@ -1,6 +1,6 @@
-import { Box } from "@mui/material";
 import React from "react";
 import useTrackStore from "store/track";
+import CustomSlider from "ui/Slider/Slider";
 
 interface VolumeRangeProps {
   audio: HTMLAudioElement;
@@ -9,23 +9,20 @@ interface VolumeRangeProps {
 const VolumeRange = ({ audio }: VolumeRangeProps) => {
   const [volume, setVolume] = useTrackStore((state) => [state.volume, state.setVolume]);
 
-  const changeVolume = (volume: number) => {
+  const handleChangeVolume = (volume: number) => {
     setVolume(volume);
     audio.volume = volume / 100;
   };
 
   return (
-    <Box sx={{ display: "flex", gap: "10px" }}>
-      Volume:
-      <input
-        type="range"
-        value={volume}
-        onChange={(e) => changeVolume(+e.target.value)}
-        min={0}
-        max={100}
-      />
-      {volume}/100
-    </Box>
+    <CustomSlider
+      sx={{ flexBasis: "20%" }}
+      value={volume}
+      onChange={handleChangeVolume}
+      min={0}
+      max={100}
+      label="Volume"
+    />
   );
 };
 
