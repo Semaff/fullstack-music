@@ -1,8 +1,8 @@
-import { render } from "@testing-library/react";
+import { render, RenderOptions } from "@testing-library/react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactNode } from "react";
 
-export const renderWithClient = (component: ReactNode | string) => {
+export const renderWithClient = (component: ReactNode | string, options?: RenderOptions) => {
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: {
@@ -12,5 +12,8 @@ export const renderWithClient = (component: ReactNode | string) => {
     }
   });
 
-  return render(<QueryClientProvider client={queryClient}>{component}</QueryClientProvider>);
+  return render(
+    <QueryClientProvider client={queryClient}>{component}</QueryClientProvider>,
+    options
+  );
 };
