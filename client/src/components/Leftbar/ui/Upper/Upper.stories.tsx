@@ -13,4 +13,8 @@ const Template: ComponentStory<typeof Upper> = () => {
 };
 
 export const Default = Template.bind({});
-Default.args = {};
+Default.parameters = {
+  viewport: {
+    defaultViewport: "tablet"
+  }
+};

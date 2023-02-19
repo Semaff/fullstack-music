@@ -1,4 +1,4 @@
-import { Box, Button } from "@mui/material";
+import { Box, IconButton } from "@mui/material";
 import { Dispatch, SetStateAction } from "react";
 import { Menu } from "@mui/icons-material";
 import { ERoutes } from "types/routes/ERoutes";
@@ -10,20 +10,29 @@ interface UpperProps {
 }
 
 const Upper = ({ setIsActive }: UpperProps) => {
+  const handleToggle = () => {
+    setIsActive((prev) => !prev);
+  };
+
+  const handleLogoClick = () => {
+    Router.push(ERoutes.HOME);
+  };
+
   return (
     <Box
+      data-testid="leftbar-upper"
       sx={{
-        padding: "10px",
-        display: { lg: "none", xs: "flex" },
+        p: 1,
+        display: { xs: "flex", lg: "none" },
         alignItems: "center",
         justifyContent: "space-between"
       }}
     >
-      <Button color="inherit" onClick={() => setIsActive((prev) => !prev)}>
+      <IconButton aria-label="leftbar-upper-btn" color="inherit" onClick={handleToggle}>
         <Menu />
-      </Button>
+      </IconButton>
 
-      <Logo onClick={() => Router.push(ERoutes.HOME)} />
+      <Logo onClick={handleLogoClick} />
     </Box>
   );
 };

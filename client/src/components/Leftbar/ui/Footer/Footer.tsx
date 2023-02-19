@@ -10,13 +10,13 @@ const Footer = () => {
 
   const { mutate: logoutMutate } = useMutation(logout, {
     onSuccess() {
-      queryClient.setQueryData("findMe", undefined);
-      Router.push("/signin");
+      queryClient.resetQueries("findMe");
+      Router.push(ERoutes.SIGNIN);
     }
   });
 
   return (
-    <Box sx={{ marginTop: "auto", textAlign: "center" }}>
+    <Box data-testid="leftbar-footer" sx={{ marginTop: "auto", textAlign: "center" }}>
       <Link style={{ textDecoration: "none", color: "inherit" }} href={ERoutes.PROFILE}>
         <Typography
           fontSize={20}
